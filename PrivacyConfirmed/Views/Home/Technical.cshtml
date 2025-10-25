@@ -1,0 +1,282 @@
+@{
+    ViewData["Title"] = "Technical Documentation - OAuth Flows & Best Practices | PrivacyConfirmed";
+}
+
+<div class="hero-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1>Implementation Guide & OAuth Flows</h1>
+                <p class="lead mb-4">Comprehensive documentation and best practices for secure authentication</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-3">
+            <nav class="nav flex-column sticky-top pt-4" style="top: 2rem;">
+                <a class="nav-link" href="#auth-flows">Authentication Flows</a>
+                <a class="nav-link" href="#implementation-blueprint">Implementation Blueprint</a>
+                <a class="nav-link" href="#implementation-checklist">Implementation Checklist</a>
+            </nav>
+        </div>
+        <div class="col-lg-9">
+            <section id="auth-flows" class="mb-5">
+                <h2 class="mb-4">Recommended Authentication Flows</h2>
+                
+                <div class="card mb-4 fade-in">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="h5 mb-0">Authorization Code Flow with PKCE</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <strong class="d-block mb-2">Recommended for:</strong>
+                            <p>Web apps and mobile apps (SPAs) that require secure user authentication.</p>
+
+                            <strong class="d-block mb-2">Why it’s right:</strong>
+                            <p>The Authorization Code Flow with PKCE (Proof Key for Code Exchange) ensures the highest level of security by preventing interception of the authorization code in client-side apps. It’s the most secure OAuth2 flow for public clients.</p>
+                            
+                            <strong class="d-block mb-2">Redirect URI Types:</strong>
+                            <p class="mb-0">Web App: https://your-app.com/callback</p>
+                            <p class="mb-0">Mobile app: yourapp://callback</p>
+                        </div>
+                        
+                        <div class="code-block">
+                            <strong class="d-block mb-2">Example curl Request for Authorization Code:</strong>
+                            <pre>
+                                <code>
+                                    curl -X GET "https://auth.example.com/authorize?response_type=code
+                                    &client_id=CLIENT_ID&redirect_uri=
+                                    https://yourapp.com/callback&scope=openid%20profile
+                                    &code_challenge=PKCE_CHALLENGE&code_challenge_method=S256"
+                                </code>
+                            </pre>
+                        </div>
+                        <br />
+                        <div class="mb-4">
+                            <strong class="d-block mb-2">Token Validation Checklist:</strong>
+                            <ul class="list-group-horizontal">
+                                <li>Ensure the issuer matches your authorization server.</li>
+                                <li>Validate audience to make sure the token is intended for your app.</li>
+                                <li>Check expiration to ensure the token is still valid.</li>
+                                <li>Validate the signature using JWKS (JSON Web Key Set).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4 fade-in">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="h5 mb-0">Client Credentials Flow</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <strong class="d-block mb-2">Recommended for:</strong>
+                            <p>Backend-to-backend authentication, where apps authenticate on behalf of themselves (no user interaction).</p>
+
+                            <strong class="d-block mb-2">Why it’s right:</strong>
+                            <p>The Client Credentials Flow is ideal for secure server-to-server communications, such as microservices or API integrations where no user context is required.</p>
+
+                            <strong class="d-block mb-2">Redirect URI Types:</strong>
+                            <p class="mb-0">Server-side: None required.</p>
+                        </div>
+
+                        <div class="code-block">
+                            <strong class="d-block mb-2">Example curl Request for Client Credentials:</strong>
+                            <pre>
+                            <code>
+                                    curl -X POST "https://auth.example.com/token" \
+                                    -d 
+                                    "grant_type=client_credentials&client_id=CLIENT_ID&client_secret=CLIENT_SECRE
+                                    T&scope=api.read"
+                            </code>
+                            </pre>
+                        </div>
+                        <br />
+                        <div class="mb-4">
+                            <strong class="d-block mb-2">Token Validation Checklist:</strong>
+                            <ul class="list-group-horizontal">
+                                <li>Ensure the issuer is correct and matches your OAuth server.</li>
+                                <li>Validate audience to confirm the token is intended for your service.</li>
+                                <li>Check expiration time to ensure the token is still valid.</li>
+                                <li>Validate the signature via JWKS for security.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4 fade-in">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="h5 mb-0">Device Authorization Flow</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <strong class="d-block mb-2">Recommended for:</strong>
+                            <p>Devices without a browser or input interface (e.g., smart TVs, IoT devices).</p>
+
+                            <strong class="d-block mb-2">Why it’s right:</strong>
+                            <p>The Device Authorization Flow is designed to allow users to authenticate on devices that don’t have a browser, providing a secure way for devices to get an access token.</p>
+
+                            <strong class="d-block mb-2">Redirect URI Types:</strong>
+                            <p class="mb-0">•	None needed, as the user will authenticate through a different device (e.g., smartphone).</p>
+                        </div>
+
+                        <div class="code-block">
+                            <strong class="d-block mb-2">Example curl Request for Device Authorization:</strong>
+                            <pre>
+                                <code>
+                                    curl -X POST "https://auth.example.com/device_authorize" \
+                                    -d "client_id=CLIENT_ID&scope=openid%20profile"
+                                </code>
+                            </pre>
+                        </div>
+                        <br />
+                        <div class="mb-4">
+                            <strong class="d-block mb-2">Token Validation Checklist:</strong>
+                            <ul class="list-group-horizontal">
+                                <li>Verify the issuer to match your authorization server.</li>
+                                <li>Validate the audience to confirm the token’s legitimacy.</li>
+                                <li>Check the expiration for validity.</li>
+                                <li>Ensure signature validation through JWKS.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4 fade-in">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="h5 mb-0">Refresh Token Rotation</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <strong class="d-block mb-2">Recommended for:</strong>
+                            <p>Ensures long-term access without needing to re-authenticate the user, particularly useful in single-page apps (SPAs).</p>
+
+                            <strong class="d-block mb-2">Why it’s right:</strong>
+                            <p>Refresh tokens allow seamless background access, rotating them regularly enhances security by reducing the risk of token theft.</p>
+
+                            <strong class="d-block mb-2">Redirect URI Types:</strong>
+                            <p class="mb-0">Web app: https://yourapp.com/callback</p>
+                        </div>
+
+                        <div class="code-block">
+                            <strong class="d-block mb-2">Example curl Request for Refresh Token:</strong>
+                            <pre>
+                            <code>
+                                    curl -X POST "https://auth.example.com/token" \
+                                    -d 
+                                    "grant_type=refresh_token&client_id=CLIENT_ID&client_secret=CLIENT_SECRET&ref
+                                    resh_token=REFRESH_TOKEN"
+                                </code>
+                            </pre>
+                        </div>
+                        <br />
+                        <div class="mb-4">
+                            <strong class="d-block mb-2">Token Validation Checklist:</strong>
+                            <ul class="list-group-horizontal">
+                                <li>Ensure the issuer matches your authorization server.</li>
+                                <li>Validate audience to ensure it’s for your app.</li>
+                                <li>Check expiration of both access and refresh tokens.</li>
+                                <li>Ensure signature validation using JWKS.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="implementation-blueprint" class="mb-5">
+                <h2 class="mb-4">Implementation Blueprint</h2>
+                <div class="card fade-in">
+                    <div class="card-body">
+                        <div class="d-block mb-2">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon me-3">
+                                    <i class="bi bi-shield-check"></i>
+                                </div>
+                                <h4 class="h5 mb-0">4–6 Steps to Implement IAM</h4>
+                            </div>
+                            <p>Follow these straightforward steps to get started with PrivacyConfirmed IAM in your application. Whether you're a developer integrating the platform or an administrator configuring it, these steps will guide you through the setup process.</p>
+                            <strong class="d-block mb-2">Step 1: Set Up Your IAM Environment</strong>
+                            <ul class="list-group-horizontal">
+                                <li>Create an Account: Sign up for PrivacyConfirmed IAM to access the Admin Console.</li>
+                                <li>Configure Your OAuth Settings: Set up OAuth2 providers (e.g., Google, Facebook, or custom). Define redirect URIs, client IDs, and client secrets.</li>
+                            </ul>
+                            <strong class="d-block mb-2">Step 2: Configure Authentication & Authorization</strong>
+                            <ul class="list-group-horizontal">
+                                <li>Integrate SDKs: Use our ready-to-go SDKs for mobile and web apps. Follow the authorization code flow or client credentials flow based on your app type.</li>
+                                <li>Enable Multi-Factor Authentication (MFA): Add an additional layer of security to your authentication process. Set up MFA (SMS, email, or mobile authenticator apps).</li>
+                            </ul>
+                            <strong class="d-block mb-2">Step 3: Define Access Policies & Roles (RBAC)</strong>
+                            <ul class="list-group-horizontal">
+                                <li>Create Roles & Policies: Use the Admin Console to define roles (e.g., admin, user, guest) and assign appropriate access permissions. This helps streamline the Role-Based Access Control (RBAC) model.</li>
+                                <li>Assign Users: Map users to roles and ensure the correct policies are enforced.</li>
+                            </ul>
+                            <strong class="d-block mb-2">Step 4: Set Up Observability & Monitoring</strong>
+                            <ul class="list-group-horizontal">
+                                <li>Activate Logs: Set up real-time audit logs to track all authentication and authorization events.</li>
+                                <li>Configure Alerts: Set up automatic alerts for suspicious activities or failed login attempts.</li>
+                            </ul>
+                            <strong class="d-block mb-2">Step 5: Test & Validate Authentication Flows</strong>
+                            <ul class="list-group-horizontal">
+                                <li>Run Test Cases: Ensure your authentication flows (SSO, social login, MFA, etc.) are working correctly by testing with real users and applications.</li>
+                                <li>Validate Tokens: Use the token validation checklist to verify that issued tokens are secure, with the correct audience, issuer, and expiry.</li>
+                            </ul>
+                            <strong class="d-block mb-2">Step 6: Go Live & Monitor</strong>
+                            <ul class="list-group-horizontal">
+                                <li>Deploy: Move from development to production, ensuring you are following best practices for token rotation, refresh token handling, and security measures.</li>
+                                <li>Monitor in Real-Time: Use the Admin Console and observability tools to ensure smooth and secure operation of your IAM setup.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="implementation-checklist" class="mb-5">
+                <h2 class="mb-4">Implementation Checklist:</h2>
+                <div class="d-block mb-2">
+                        <div class="card fade-in">
+                            <div class="card-body">
+                            <ul class="list-group-horizontal">
+                                    <li>Set up account and configure OAuth settings</li>
+                                    <li>Integrate SDKs and configure authentication flows</li>
+                                    <li>Define roles and RBAC policies in the admin console</li>
+                                    <li>Enable MFA and configure it for added security</li>
+                                    <li>Activate logging and monitoring features</li>
+                                    <li>Validate token issuance and expiration</li>
+                                    <li>Deploy to production and monitor access logs</li>
+                                </ul>
+                            </div>
+                        </div>
+                     </div>
+            </section>
+            <!--Below section is irrelevant and can be removed but when I remove the section above this disappear-->
+            <section id="security" class="mb-5">
+                <h2 class="mb-4">Security Best Practices</h2>
+                <div class="card fade-in">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <h4>Token Security</h4>
+                                <ul class="list-unstyled">
+                                    <li>? Use short-lived access tokens</li>
+                                    <li>? Implement token rotation</li>
+                                    <li>? Store tokens securely</li>
+                                    <li>? Never expose tokens in URLs</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <h4>Application Security</h4>
+                                <ul class="list-unstyled">
+                                    <li>? Implement PKCE for mobile/SPA</li>
+                                    <li>? Use secure session management</li>
+                                    <li>? Enable MFA for sensitive operations</li>
+                                    <li>? Regular security audits</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PrivacyConfirmed</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/PrivacyConfirmed.styles.css" asp-append-version="true" />
+    <meta name="description" content="Enterprise-grade identity and access management with India-first data residency" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" asp-controller="Home" asp-action="Index">
+                    <img src="/images/logo.svg" alt="PrivacyConfirmed Logo" height="30" class="d-inline-block align-text-top me-2" />
+                    PrivacyConfirmed
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Technical">
+                                <i class="bi bi-book me-1"></i> Documentation
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="AdminConsole">
+                                <i class="bi bi-book me-1"></i> Admin & Dev Console
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Pricing">
+                                <i class="bi bi-tag me-1"></i> Pricing
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="CoreFeatures">
+                                <i class="bi bi-question-circle me-1"></i> Core Features
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="HowItHelps">
+                                <i class="bi bi-question-circle me-1"></i> How It Helps
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="ComparisonMatrix">
+                                <i class="bi bi-question-circle me-1"></i> Comparison Matrix
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="LegalAndCompliance">
+                                <i class="bi bi-question-circle me-1"></i> Legal & Compliance
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="FAQ">
+                                <i class="bi bi-question-circle me-1"></i> FAQ
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <a href="/trial" class="btn btn-outline-light me-2">
+                            <i class="bi bi-rocket me-1"></i> Start Trial
+                        </a>
+                        <a href="@Url.Action("ReqADemo", "Home")" class="btn btn-light">
+                            <i class="bi bi-play-circle me-1"></i> Request Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="content-wrapper" style="margin-top: 76px;">
+        @RenderBody()
+    </div>
+
+    <footer class="footer py-5 bg-light mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>PrivacyConfirmed</h5>
+                    <p class="text-muted">Enterprise-grade identity and access management with India-first data residency</p>
+                    <div class="social-icons mt-3">
+                        <a href="https://twitter.com/privacyconfirmed" class="text-muted me-3">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="https://linkedin.com/company/privacyconfirmed" class="text-muted me-3">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/privacyconfirmed" class="text-muted">
+                            <i class="bi bi-github"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5>Product</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/features" class="text-muted"><i class="bi bi-check2-circle me-2"></i>Features</a></li>
+                        <li><a href="/pricing" class="text-muted"><i class="bi bi-tag me-2"></i>Pricing</a></li>
+                        <li><a href="/security" class="text-muted"><i class="bi bi-shield-check me-2"></i>Security</a></li>
+                        <li><a href="/enterprise" class="text-muted"><i class="bi bi-building me-2"></i>Enterprise</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/docs" class="text-muted"><i class="bi bi-book me-2"></i>Documentation</a></li>
+                        <li><a href="/api" class="text-muted"><i class="bi bi-code-square me-2"></i>API Reference</a></li>
+                        <li><a href="/sdks" class="text-muted"><i class="bi bi-box me-2"></i>SDKs</a></li>
+                        <li><a href="/blog" class="text-muted"><i class="bi bi-newspaper me-2"></i>Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5>Company</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/about" class="text-muted"><i class="bi bi-info-circle me-2"></i>About</a></li>
+                        <li><a href="/contact" class="text-muted"><i class="bi bi-envelope me-2"></i>Contact</a></li>
+                        <li><a href="/privacy" class="text-muted"><i class="bi bi-shield-lock me-2"></i>Privacy</a></li>
+                        <li><a href="/terms" class="text-muted"><i class="bi bi-file-text me-2"></i>Terms</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5>Support</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/help" class="text-muted"><i class="bi bi-question-circle me-2"></i>Help Center</a></li>
+                        <li><a href="/status" class="text-muted"><i class="bi bi-heart-pulse me-2"></i>Status</a></li>
+                        <li><a href="/community" class="text-muted"><i class="bi bi-people me-2"></i>Community</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4" />
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <p class="mb-0">&copy; @DateTime.Now.Year PrivacyConfirmed. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <img src="/images/india-flag.svg" alt="Made in India" height="20" class="me-2" />
+                    Made with pride in India
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

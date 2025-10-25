@@ -1,0 +1,149 @@
+@{
+    ViewData["Title"] = "Frequently Asked Questions | PrivacyConfirmed";
+}
+
+<div class="container">
+    <h1 class="text-center mb-5">Frequently Asked Questions</h1>
+
+    <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                    What's the difference between OAuth 2.0 and OpenID Connect?
+                </button>
+            </h2>
+            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    <b>OAuth2</b> is an authorization protocol that allows applications to delegate access to resources without sharing passwords. <b>OIDC (OpenID Connect)</b> builds on OAuth2, adding authentication, allowing applications to verify the identity of users and retrieve basic profile information.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                    Which OAuth flow should I use for my application?
+                </button>
+            </h2>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    <ul>
+                        <li><b>Authorization Code Flow with PKCE:</b> Recommended for Single Page Applications (SPAs) and mobile apps.</li>
+                        <li><b>Authorization Code Flow:</b> Best for server-side web applications.</li>
+                        <li><b>Client Credentials Flow:</b> Suitable for machine-to-machine communication without user context.</li>
+                        <li><b>Device Authorization Flow:</b> Ideal for devices without browsers (e.g., smart TVs, IoT).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                    How do you handle refresh tokens in Single Page Applications?
+                </button>
+            </h2>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    In SPAs, <b>refresh tokens</b> allow continuous access without re-authenticating users. However, to avoid security risks, they should be stored <b>securely</b> (e.g., in HttpOnly cookies) and rotated periodically.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                    How do I validate OAuth tokens?
+                </button>
+            </h2>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    <ul>
+                        <li><b>Issuer:</b> Ensure the token is issued by a trusted authority</li>
+                        <li><b>Audience:</b> Verify the token is intended for your app</li>
+                        <li><b>Expiration:</b> Check if the token is still valid</li>
+                        <li><b>Signature:</b> Validate the token signature using JWKS (JSON Web Key Set)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                    How do I integrate social login providers?
+                </button>
+            </h2>
+            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Social logins can be easily integrated by configuring <b>OAuth2</b> clients for each provider in the <b>Admin Console.</b> Our SDKs and documentation will guide you through the setup process.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                    What is JWKS (JSON Web Key Set)?
+                </button>
+            </h2>
+            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    <b>JWKS</b> is a set of keys used to verify the <b>signature</b> of JWT tokens. It contains public keys that allow your app to validate tokens issued by the <b>authorization server.</b> PrivacyConfirmed provides JWKS endpoints to facilitate this process.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
+                    How does Single Sign-Out work across applications?
+                </button>
+            </h2>
+            <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    We support both front-channel and back-channel logout. When a user logs out, we notify all registered applications through either browser redirects or webhook notifications, ensuring consistent session termination across your ecosystem.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
+                    How does key rotation work in PrivacyConfirmed?
+                </button>
+            </h2>
+            <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    PrivacyConfirmed allows automatic <b>key rotation</b> for JWT tokens. We periodically rotate keys to ensure that stolen or compromised keys don’t jeopardize security, with the latest keys available through our JWKS endpoint.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq9">
+                    How does SSO (Single Sign-On) work in PrivacyConfirmed?
+                </button>
+            </h2>
+            <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    SSO enables users to log in once and access multiple applications without needing to authenticate again. PrivacyConfirmed supports <b>OIDC-based SSO</b> to streamline user authentication across your enterprise applications.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq10">
+                    What data residency options are available?
+                </button>
+            </h2>
+            <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    All user data is stored in Indian data centers by default. We maintain primary facilities in Mumbai and Bangalore with disaster recovery in Chennai, ensuring compliance with data localization requirements while providing high availability.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

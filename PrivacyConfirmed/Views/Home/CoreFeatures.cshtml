@@ -1,0 +1,264 @@
+@{
+    ViewData["Title"] = "Core Features | PrivacyConfirmed";
+}
+
+<div class="hero-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1>Core Features</h1>
+                <p class="lead mb-4">Core Features</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-3">
+            <nav class="nav flex-column sticky-top pt-4" style="top: 2rem;">
+                <a class="nav-link" href="#auth-flows">Recommended Authentication Flows</a>
+                <a class="nav-link" href="#social-login">Social Login</a>
+                <a class="nav-link" href="#authorization-token-mgmt">Authorization & Token Management</a>
+                <a class="nav-link" href="#RBAC-Policies">RBAC & Policies</a>
+                <a class="nav-link" href="#mfa-risk-management">MFA & Risk Management</a>
+                <a class="nav-link" href="#admin-console">Admin Console</a>
+                <a class="nav-link" href="#observability">Observability</a>
+            </nav>
+        </div>
+        
+        <div class="col-lg-9">
+            <section id="auth-flows" class="mb-5">
+                <h2 class="mb-4">Recommended Authentication Flows</h2>
+                
+                <div class="card mb-4 fade-in">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="h5 mb-0">Authentication & SSO</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <strong class="d-block mb-2">Best for:</strong>
+                            <p>
+                                Provide seamless, secure access across multiple applications with Single Sign-On (SSO). Simplify user management while maintaining high security with OIDC and OAuth2 standards.
+                            </p>
+                            <ul>
+                                <li>Streamlined user experience with one-click login across apps.</li>
+                                <li>Reduced administrative overhead with centralized user management.</li>
+                                <li>Enhanced security with risk-based authentication and multi-factor authentication (MFA).</li>
+                            </ul>
+                            <strong class="d-block mb-2">Business Benefits</strong>
+                            <p class="mb-0">
+                                <ul>
+                                    <li>Increase user productivity by reducing login friction.</li>
+                                    <li>Simplify security management for large organizations.</li>
+                                    <li>Meet compliance needs with secure authentication.</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="social-login" class="mb-5">
+                <div class="card mb-4 fade-in">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="h5 mb-0">Social Login</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <strong class="d-block mb-2">Best for:</strong>
+                            <p>
+                                Enable your users to authenticate with their preferred social platforms like Google, Facebook, and LinkedIn, improving user engagement and reducing sign-up barriers.
+                            </p>
+                            <ul>
+                                <li>Easy user onboarding with popular social logins.</li>
+                                <li>Reduced friction and increased conversion rates.</li>
+                                <li>Supports multiple providers for wider reach.</li>
+                            </ul>
+                            <strong class="d-block mb-2">Business Benefits</strong>
+                            <p class="mb-0">
+                                <ul>
+                                    <li>Accelerate user adoption with familiar login methods.</li>
+                                    <li>Decrease user drop-off during sign-up.</li>
+                                    <li>Enhance app usability with seamless social integrations.</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="authorization-token-mgmt" class="mb-5">
+                <div class="card mb-4 fade-in">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="h5 mb-0">Authorization & Token Management</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <strong class="d-block mb-2">Best for:</strong>
+                            <p>
+                                Manage user permissions effectively using RBAC (Role-Based Access Control) and OAuth tokens to control and monitor access across systems.
+                            </p>
+                            <ul>
+                                <li>Fine-grained access control via roles and policies.</li>
+                                <li>Support for JWT tokens, ensuring secure data transfer.</li>
+                                <li>Automated token expiration and rotation for enhanced security.</li>
+                            </ul>
+                            <strong class="d-block mb-2">Business Benefits</strong>
+                            <p class="mb-0">
+                                <ul>
+                                    <li>Ensure secure, regulated access to sensitive data.</li>
+                                    <li>Maintain compliance with ease through automated policies.</li>
+                                    <li>Simplify authorization across complex app architectures.</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="RBAC-Policies" class="mb-5">
+                <div class="card mb-4 fade-in">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="h5 mb-0">RBAC & Policies</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <strong class="d-block mb-2">Best for:</strong>
+                            <p>
+                                Define and enforce granular access controls for users based on their roles, improving governance and reducing unauthorized access.
+                            </p>
+                            <ul>
+                                <li>Create custom policies to match your security posture.</li>
+                                <li>Centralized control of user permissions and access levels.</li>
+                                <li>Integration with external systems for consistent role enforcement.</li>
+                            </ul>
+                            <strong class="d-block mb-2">Business Benefits</strong>
+                            <p class="mb-0">
+                                <ul>
+                                    <li>Reduce the risk of unauthorized access.</li>
+                                    <li>Improve operational security with tailored access rules.</li>
+                                    <li>Enhance auditability and compliance readiness.</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="mfa-risk-management" class="mb-5">
+                <div class="card mb-4 fade-in">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="h5 mb-0">MFA & Risk Management</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <strong class="d-block mb-2">Best for:</strong>
+                            <p>
+                                Mitigate security risks by integrating Multi-Factor Authentication (MFA) and adaptive authentication, making sure only legitimate users gain access to sensitive applications.
+                            </p>
+                            <ul>
+                                <li>Risk-based authentication adapts security checks based on user behavior.</li>
+                                <li>MFA support across mobile apps, email, and hardware tokens.</li>
+                                <li>Real-time risk assessment to prevent unauthorized access attempts.</li>
+                            </ul>
+                            <strong class="d-block mb-2">Business Benefits</strong>
+                            <p class="mb-0">
+                                <ul>
+                                    <li>Enhance user security without adding friction.</li>
+                                    <li>Proactively detect and block suspicious activity.</li>
+                                    <li>Meet compliance regulations for sensitive data access.</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="admin-console" class="mb-5">
+                <div class="card mb-4 fade-in">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="h5 mb-0">Admin Console</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <strong class="d-block mb-2">Best for:</strong>
+                            <p>
+                                Manage users, roles, and security policies from a centralized Admin Console. Streamline access management and monitor system activity to ensure compliance and operational efficiency.
+                            </p>
+                            <ul>
+                                <li>User management with powerful filters and search.</li>
+                                <li>Audit logs to track and analyze system access.</li>
+                                <li>Policy enforcement for consistent security standards across teams.</li>
+                            </ul>
+                            <strong class="d-block mb-2">Business Benefits</strong>
+                            <p class="mb-0">
+                                <ul>
+                                    <li>Streamline administrative tasks and reduce overhead.</li>
+                                    <li>Maintain full visibility of system activities for compliance.</li>
+                                    <li>Centralized security policy management for faster updates.</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="observability" class="mb-5">
+                <div class="card fade-in">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="h5 mb-0">Observability</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <strong class="d-block mb-2">Best for:</strong>
+                            <p>
+                                Monitor and audit all access events across your platform with real-time observability. Utilize logs, alerts, and dashboards to keep track of authentication and authorization activities.
+                            </p>
+                            <ul>
+                                <li>Deep insights with real-time monitoring of authentication events.</li>
+                                <li>Customizable alerts to flag suspicious activities.</li>
+                                <li>Easy integration with SIEM for advanced security analysis.</li>
+                            </ul>
+                            <strong class="d-block mb-2">Business Benefits</strong>
+                            <p class="mb-0">
+                                <ul>
+                                    <li>Improve security posture with proactive alerts.</li>
+                                    <li>Enhance compliance readiness with detailed audit logs.</li>
+                                    <li>Quickly identify and mitigate potential threats across your environment.</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="security" class="mb-5">
+                <h2 class="mb-4">Security Best Practices</h2>
+                <div class="card fade-in">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <h4>Token Security</h4>
+                                <ul class="list-unstyled">
+                                    <li>? Use short-lived access tokens</li>
+                                    <li>? Implement token rotation</li>
+                                    <li>? Store tokens securely</li>
+                                    <li>? Never expose tokens in URLs</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <h4>Application Security</h4>
+                                <ul class="list-unstyled">
+                                    <li>? Implement PKCE for mobile/SPA</li>
+                                    <li>? Use secure session management</li>
+                                    <li>? Enable MFA for sensitive operations</li>
+                                    <li>? Regular security audits</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
