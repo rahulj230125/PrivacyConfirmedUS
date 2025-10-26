@@ -1,0 +1,172 @@
+@{
+    ViewData["Title"] = "Thank You | PrivacyConfirmed";
+}
+
+<style>
+    .success-hero {
+        background: linear-gradient(135deg, #198754 0%, #157347 100%);
+        color: white;
+        padding: 5rem 0;
+        margin-bottom: 3rem;
+        text-align: center;
+    }
+    
+    .success-icon {
+        font-size: 5rem;
+        animation: scaleIn 0.5s ease-out;
+    }
+    
+    @@keyframes scaleIn {
+        from {
+            transform: scale(0);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+    
+    .success-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding-bottom: 5rem;
+    }
+    
+    .success-card {
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        padding: 3rem;
+        text-align: center;
+    }
+    
+    .next-steps-card {
+        background: #f8f9fa;
+        border-left: 4px solid #198754;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        margin-top: 2rem;
+    }
+    
+    .next-steps-card h4 {
+        color: #198754;
+        margin-bottom: 1.5rem;
+    }
+    
+    .next-steps-list {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .next-steps-list li {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    .next-steps-list li:last-child {
+        border-bottom: none;
+    }
+    
+    .next-steps-list i {
+        color: #198754;
+        margin-right: 1rem;
+        font-size: 1.25rem;
+    }
+</style>
+
+<div class="success-hero">
+    <div class="container">
+        <i class="bi bi-check-circle-fill success-icon"></i>
+        <h1 class="mt-4">Thank You!</h1>
+        <p class="lead">Your message has been successfully submitted</p>
+    </div>
+</div>
+
+<div class="container success-container">
+    <div class="success-card">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success border-0 mb-4">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                @TempData["SuccessMessage"]
+            </div>
+        }
+        
+        <h2 class="mb-4">We've Received Your Information</h2>
+        <p class="lead text-muted mb-4">
+            Our team will review your inquiry and get back to you within 24 hours.
+        </p>
+        
+        <div class="next-steps-card text-start">
+            <h4>
+                <i class="bi bi-list-check me-2"></i>
+                What Happens Next?
+            </h4>
+            <ul class="next-steps-list">
+                <li>
+                    <i class="bi bi-1-circle-fill"></i>
+                    <strong>Acknowledgment:</strong> You'll receive a confirmation email shortly
+                </li>
+                <li>
+                    <i class="bi bi-2-circle-fill"></i>
+                    <strong>Review:</strong> Our team will review your requirements
+                </li>
+                <li>
+                    <i class="bi bi-3-circle-fill"></i>
+                    <strong>Response:</strong> We'll contact you within 24 hours via email or phone
+                </li>
+                <li>
+                    <i class="bi bi-4-circle-fill"></i>
+                    <strong>Next Steps:</strong> Schedule a personalized demo or consultation
+                </li>
+            </ul>
+        </div>
+        
+        <div class="mt-5">
+            <h5 class="mb-3">Explore More</h5>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <a asp-action="Index" class="btn btn-outline-primary">
+                    <i class="bi bi-house-fill me-2"></i>
+                    Back to Home
+                </a>
+                <a asp-action="Technical" class="btn btn-outline-primary">
+                    <i class="bi bi-book-fill me-2"></i>
+                    Documentation
+                </a>
+                <a asp-action="Pricing" class="btn btn-outline-primary">
+                    <i class="bi bi-tag-fill me-2"></i>
+                    View Pricing
+                </a>
+                <a asp-action="FAQ" class="btn btn-outline-primary">
+                    <i class="bi bi-question-circle-fill me-2"></i>
+                    FAQs
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row g-4 mt-4">
+        <div class="col-md-4">
+            <div class="text-center p-4 bg-light rounded">
+                <i class="bi bi-envelope-check text-success" style="font-size: 2.5rem;"></i>
+                <h5 class="mt-3">Email Confirmation</h5>
+                <p class="text-muted mb-0">Check your inbox</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="text-center p-4 bg-light rounded">
+                <i class="bi bi-telephone-fill text-success" style="font-size: 2.5rem;"></i>
+                <h5 class="mt-3">Phone Follow-up</h5>
+                <p class="text-muted mb-0">We'll call you soon</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="text-center p-4 bg-light rounded">
+                <i class="bi bi-calendar-check text-success" style="font-size: 2.5rem;"></i>
+                <h5 class="mt-3">Demo Scheduled</h5>
+                <p class="text-muted mb-0">At your convenience</p>
+            </div>
+        </div>
+    </div>
+</div>

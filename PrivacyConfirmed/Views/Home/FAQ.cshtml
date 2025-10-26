@@ -2,13 +2,137 @@
     ViewData["Title"] = "Frequently Asked Questions | PrivacyConfirmed";
 }
 
-<div class="container">
-    <h1 class="text-center mb-5">Frequently Asked Questions</h1>
+<style>
+    /* Hero Section */
+    .faq-hero {
+        background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+        color: white;
+        padding: 4rem 0 3rem 0;
+        margin-bottom: 3rem;
+    }
+    
+    .faq-hero h1 {
+        font-weight: 700;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .faq-hero p {
+        font-size: 1.2rem;
+        opacity: 0.95;
+    }
+    
+    /* FAQ Container */
+    .faq-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding-bottom: 12rem !important;
+        margin-bottom: 5rem !important;
+    }
+    
+    /* Accordion Styling */
+    .accordion-item {
+        border: none;
+        margin-bottom: 1rem;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+    }
+    
+    .accordion-item:hover {
+        box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        transform: translateY(-2px);
+    }
+    
+    .accordion-header {
+        margin-bottom: 0;
+    }
+    
+    .accordion-button {
+        font-weight: 600;
+        font-size: 1.1rem;
+        padding: 1.25rem 1.5rem;
+        background-color: #f8f9fa;
+        color: #212529;
+        border: none;
+        transition: all 0.3s ease;
+    }
+    
+    .accordion-button:not(.collapsed) {
+        background-color: #0d6efd;
+        color: white;
+        box-shadow: none;
+    }
+    
+    .accordion-button:focus {
+        border-color: transparent;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    }
+    
+    .accordion-button::after {
+        background-size: 1.25rem;
+        transition: transform 0.3s ease;
+    }
+    
+    .accordion-button:not(.collapsed)::after {
+        filter: brightness(0) invert(1);
+    }
+    
+    .accordion-body {
+        padding: 1.5rem;
+        font-size: 1rem;
+        line-height: 1.7;
+        background-color: white;
+    }
+    
+    .accordion-body ul {
+        margin-top: 1rem;
+        padding-left: 1.5rem;
+    }
+    
+    .accordion-body ul li {
+        margin-bottom: 0.75rem;
+        line-height: 1.6;
+    }
+    
+    .accordion-body b {
+        color: #0d6efd;
+        font-weight: 600;
+    }
+    
+    /* FAQ Counter */
+    .faq-counter {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
+        background-color: #0d6efd;
+        color: white;
+        border-radius: 50%;
+        font-weight: 600;
+        font-size: 0.875rem;
+        margin-right: 1rem;
+    }
+</style>
 
+<div class="faq-hero">
+    <div class="container">
+        <div class="text-center">
+            <i class="bi bi-question-circle-fill" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+            <h1>Frequently Asked Questions</h1>
+            <p class="lead">Find answers to common questions about PrivacyConfirmed IAM</p>
+        </div>
+    </div>
+</div>
+
+<div class="container faq-container">
     <div class="accordion" id="faqAccordion">
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                    <span class="faq-counter">1</span>
                     What's the difference between OAuth 2.0 and OpenID Connect?
                 </button>
             </h2>
@@ -22,6 +146,7 @@
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                    <span class="faq-counter">2</span>
                     Which OAuth flow should I use for my application?
                 </button>
             </h2>
@@ -40,6 +165,7 @@
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                    <span class="faq-counter">3</span>
                     How do you handle refresh tokens in Single Page Applications?
                 </button>
             </h2>
@@ -53,6 +179,7 @@
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                    <span class="faq-counter">4</span>
                     How do I validate OAuth tokens?
                 </button>
             </h2>
@@ -71,6 +198,7 @@
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                    <span class="faq-counter">5</span>
                     How do I integrate social login providers?
                 </button>
             </h2>
@@ -84,6 +212,7 @@
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                    <span class="faq-counter">6</span>
                     What is JWKS (JSON Web Key Set)?
                 </button>
             </h2>
@@ -97,6 +226,7 @@
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
+                    <span class="faq-counter">7</span>
                     How does Single Sign-Out work across applications?
                 </button>
             </h2>
@@ -110,12 +240,13 @@
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
+                    <span class="faq-counter">8</span>
                     How does key rotation work in PrivacyConfirmed?
                 </button>
             </h2>
             <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                    PrivacyConfirmed allows automatic <b>key rotation</b> for JWT tokens. We periodically rotate keys to ensure that stolen or compromised keys don’t jeopardize security, with the latest keys available through our JWKS endpoint.
+                    PrivacyConfirmed allows automatic <b>key rotation</b> for JWT tokens. We periodically rotate keys to ensure that stolen or compromised keys don't jeopardize security, with the latest keys available through our JWKS endpoint.
                 </div>
             </div>
         </div>
@@ -123,6 +254,7 @@
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq9">
+                    <span class="faq-counter">9</span>
                     How does SSO (Single Sign-On) work in PrivacyConfirmed?
                 </button>
             </h2>
@@ -136,6 +268,7 @@
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq10">
+                    <span class="faq-counter">10</span>
                     What data residency options are available?
                 </button>
             </h2>
@@ -146,4 +279,7 @@
             </div>
         </div>
     </div>
+    
+    <!-- Extra spacing to prevent footer overlap -->
+    <div style="height: 200px;"></div>
 </div>

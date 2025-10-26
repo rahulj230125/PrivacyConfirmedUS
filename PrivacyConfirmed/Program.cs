@@ -1,8 +1,17 @@
+using PrivacyConfirmedDAL.Interfaces;
+using PrivacyConfirmedDAL.Repositories;
+using PrivacyConfirmedBAL.Interfaces;
+using PrivacyConfirmedBAL.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
+
+// Register Dependency Injection for DAL and BAL
+builder.Services.AddScoped<IContactUsRepository, ContactUsRepository>();
+builder.Services.AddScoped<IContactUsService, ContactUsService>();
 
 var app = builder.Build();
 
