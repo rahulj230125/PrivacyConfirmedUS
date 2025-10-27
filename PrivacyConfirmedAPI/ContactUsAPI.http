@@ -1,0 +1,92 @@
+### PrivacyConfirmed API Testing
+### Base URL
+@baseUrl = https://localhost:7002
+@contentType = application/json
+
+### Health Check
+GET {{baseUrl}}/api/contactus/health
+
+###
+
+### Submit Contact Form - Valid Request
+POST {{baseUrl}}/api/contactus
+Content-Type: {{contentType}}
+
+{
+  "name": "John Doe",
+  "company": "Tech Solutions Inc",
+  "mobileNumber": "9876543210",
+  "email": "john.doe@techsolutions.com"
+}
+
+###
+
+### Submit Contact Form - Another Valid Request
+POST {{baseUrl}}/api/contactus
+Content-Type: {{contentType}}
+
+{
+  "name": "Jane Smith",
+  "company": "Innovative Designs LLC",
+  "mobileNumber": "9123456789",
+  "email": "jane.smith@innovativedesigns.com"
+}
+
+###
+
+### Submit Contact Form - Invalid Email
+POST {{baseUrl}}/api/contactus
+Content-Type: {{contentType}}
+
+{
+  "name": "Test User",
+  "company": "Test Company",
+  "mobileNumber": "9876543210",
+  "email": "invalid-email"
+}
+
+###
+
+### Submit Contact Form - Invalid Mobile Number
+POST {{baseUrl}}/api/contactus
+Content-Type: {{contentType}}
+
+{
+  "name": "Test User",
+  "company": "Test Company",
+  "mobileNumber": "123",
+  "email": "test@example.com"
+}
+
+###
+
+### Submit Contact Form - Missing Fields
+POST {{baseUrl}}/api/contactus
+Content-Type: {{contentType}}
+
+{
+  "name": "",
+  "company": ""
+}
+
+###
+
+### Get All Contacts
+GET {{baseUrl}}/api/contactus
+
+###
+
+### Get Contact by ID - Valid
+GET {{baseUrl}}/api/contactus/1
+
+###
+
+### Get Contact by ID - Not Found
+GET {{baseUrl}}/api/contactus/999
+
+###
+
+### Get Contact by ID - Invalid ID
+GET {{baseUrl}}/api/contactus/0
+
+###
