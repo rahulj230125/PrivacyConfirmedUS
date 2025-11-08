@@ -9,9 +9,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 
+// Register HttpClient for API calls
+builder.Services.AddHttpClient();
+
 // Register Dependency Injection for DAL and BAL
 builder.Services.AddScoped<IContactUsRepository, ContactUsRepository>();
 builder.Services.AddScoped<IContactUsService, ContactUsService>();
+builder.Services.AddScoped<IResourceFileRepository, ResourceFileRepository>();
+builder.Services.AddScoped<IResourceFileService, ResourceFileService>();
 
 var app = builder.Build();
 

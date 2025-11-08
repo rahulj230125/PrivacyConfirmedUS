@@ -1,0 +1,88 @@
+### PrivacyConfirmed API - Resource Center Testing
+### Base URL
+@baseUrl = https://localhost:7002
+@contentType = application/json
+
+###
+
+### Health Check - Resource Center
+GET {{baseUrl}}/api/resourcecenter/health
+
+###
+
+### Get All Resource Files
+GET {{baseUrl}}/api/resourcecenter
+
+###
+
+### Get Resource File by ID
+GET {{baseUrl}}/api/resourcecenter/1
+
+###
+
+### Upload File - ZIP (Using form-data)
+POST {{baseUrl}}/api/resourcecenter/upload
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="test.zip"
+Content-Type: application/zip
+
+< ./test-files/test.zip
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+
+### Download File by ID
+GET {{baseUrl}}/api/resourcecenter/1/download
+
+###
+
+### Delete File by ID (Soft Delete)
+DELETE {{baseUrl}}/api/resourcecenter/1
+
+###
+
+### Get File by Invalid ID
+GET {{baseUrl}}/api/resourcecenter/999
+
+###
+
+### Upload File - Invalid Type (.exe) - Should Fail
+POST {{baseUrl}}/api/resourcecenter/upload
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="malicious.exe"
+Content-Type: application/x-msdownload
+
+< ./test-files/malicious.exe
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+
+### Upload File - Word Document
+POST {{baseUrl}}/api/resourcecenter/upload
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="document.docx"
+Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+< ./test-files/document.docx
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+
+### Upload File - Excel Spreadsheet
+POST {{baseUrl}}/api/resourcecenter/upload
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="data.xlsx"
+Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+
+< ./test-files/data.xlsx
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###

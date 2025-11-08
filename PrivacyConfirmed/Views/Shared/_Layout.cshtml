@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using PrivacyConfirmed.Helpers
+<!DOCTYPE html>
 <html lang="en">
 @* Enhance UI using Bootstrap 5. Preserve all @model and @Html helpers. Focus on layout, spacing, and modern design. *@
 <head>
@@ -127,10 +128,12 @@
             box-shadow: 0 4px 12px rgba(13, 110, 253, 0.4);
         }
 
-        /* Content Wrapper */
+        /* Content Wrapper - Fixed to prevent footer overlap */
         .content-wrapper {
-            min-height: calc(100vh - 76px);
-            padding-bottom: 3rem;
+            min-height: calc(100vh - 76px - 400px); /* viewport height - navbar - footer height */
+            padding-bottom: 8rem;
+            position: relative;
+            z-index: 1;
         }
 
         /* Badge Styling */
@@ -140,6 +143,23 @@
             padding: 0.5rem 1rem;
             border-radius: 2rem;
             font-weight: 600;
+        }
+
+        /* Ensure footer is below content */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .content-wrapper {
+            flex: 1;
+        }
+
+        footer.footer {
+            position: relative !important;
+            margin-top: auto;
+            z-index: 0;
         }
     </style>
 </head>
@@ -191,6 +211,11 @@
                                 <i class="bi bi-book me-1"></i> Resources
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="resourcesDropdown">
+                                <li>
+                                    <a class="dropdown-item" asp-controller="ResourceCenter" asp-action="Index">
+                                        <i class="bi bi-folder2-open me-2"></i> Resource Center
+                                    </a>
+                                </li>
                                 <li>
                                     <a class="dropdown-item" asp-controller="Home" asp-action="Technical">
                                         <i class="bi bi-file-earmark-code me-2"></i> Documentation
@@ -367,6 +392,9 @@
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                     <p class="mb-0 text-muted">
                         <i class="bi bi-c-circle me-1"></i>@DateTime.Now.Year PrivacyConfirmed. All rights reserved.
+                    </p>
+                    <p class="mb-0 text-muted small">
+                        <i class="bi bi-code-square me-1"></i>Version @VersionHelper.GetVersion()
                     </p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">

@@ -4,6 +4,14 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Version>1.0.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <InformationalVersion>1.0.0.0</InformationalVersion>
+    <Product>PrivacyConfirmed API</Product>
+    <Description>REST API for PrivacyConfirmed application</Description>
+    <Company>PrivacyConfirmed</Company>
+    <Copyright>Copyright © 2024 PrivacyConfirmed. All rights reserved.</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

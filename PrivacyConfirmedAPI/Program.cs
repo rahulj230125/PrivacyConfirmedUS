@@ -11,6 +11,8 @@ builder.Services.AddControllers();
 // Register Dependency Injection for DAL and BAL
 builder.Services.AddScoped<IContactUsRepository, ContactUsRepository>();
 builder.Services.AddScoped<IContactUsService, ContactUsService>();
+builder.Services.AddScoped<IResourceFileRepository, ResourceFileRepository>();
+builder.Services.AddScoped<IResourceFileService, ResourceFileService>();
 
 // Configure CORS to allow requests from the MVC UI project
 builder.Services.AddCors(options =>
@@ -28,11 +30,12 @@ builder.Services.AddCors(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
+    var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "1.0.0.0";
     c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
     {
         Title = "PrivacyConfirmed API",
-        Version = "v1",
-        Description = "REST API for PrivacyConfirmed application - Contact Us feature",
+        Version = $"v{version}",
+        Description = "REST API for PrivacyConfirmed application - Contact Us & Resource Center features",
         Contact = new Microsoft.OpenApi.Models.OpenApiContact
         {
             Name = "PrivacyConfirmed Team"

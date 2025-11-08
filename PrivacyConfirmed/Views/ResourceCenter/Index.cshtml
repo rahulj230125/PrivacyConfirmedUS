@@ -1,0 +1,301 @@
+@model PrivacyConfirmedModel.FileUploadViewModel
+@{
+    ViewData["Title"] = "Resource Center";
+}
+
+<!-- Header Section -->
+<div class="resource-center-header text-center">
+    <div class="container" style="position: relative; z-index: 1;">
+        <h1 class="display-4 mb-3">
+            <i class="bi bi-folder2-open me-3"></i>Resource Center
+        </h1>
+        <p class="lead mb-0">Upload and manage your documents, spreadsheets, and compressed files</p>
+    </div>
+</div>
+
+<div class="container resource-center-container">
+    <!-- Success/Error Messages -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            <strong>Success!</strong> @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            <strong>Error!</strong> @TempData["ErrorMessage"]
+            @if (TempData["ErrorDetails"] != null)
+            {
+                <br /><small>@TempData["ErrorDetails"]</small>
+            }
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <!-- File Statistics -->
+    <div class="file-stats">
+        <div class="row text-center">
+            <div class="col-md-4">
+                <h2 class="mb-0">@Model.ResourceFiles.Count</h2>
+                <p class="mb-0">Total Files</p>
+            </div>
+            <div class="col-md-4">
+                <h2 class="mb-0">@Model.ResourceFiles.Sum(f => f.FileSize / 1024.0 / 1024.0).ToString("F2") MB</h2>
+                <p class="mb-0">Total Storage</p>
+            </div>
+            <div class="col-md-4">
+                <h2 class="mb-0">@Model.ResourceFiles.GroupBy(f => f.FileExtension).Count()</h2>
+                <p class="mb-0">File Types</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- File Upload Section -->
+    <div class="row mb-4">
+        <div class="col-lg-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="bi bi-cloud-arrow-up me-2"></i>Upload New File
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form asp-action="UploadFile" method="post" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+                        
+                        <div class="upload-card text-center">
+                            <div class="file-icon mb-3">
+                                <i class="bi bi-file-earmark-arrow-up"></i>
+                            </div>
+                            <h5 class="mb-3">Choose a file to upload</h5>
+                            
+                            <div class="mb-3">
+                                <input type="file" 
+                                       class="form-control form-control-lg" 
+                                       name="file" 
+                                       id="fileInput"
+                                       accept=".zip,.doc,.docx,.xlsx,.xls"
+                                       required />
+                            </div>
+
+                            <div class="alert alert-info mb-3" role="alert">
+                                <i class="bi bi-info-circle me-2"></i>
+                                <strong>Allowed file types:</strong> .zip, .doc, .docx, .xlsx, .xls<br />
+                                <strong>Maximum file size:</strong> 10 MB
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="bi bi-upload me-2"></i>Upload File
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Files Grid Section -->
+    <div class="row mb-5 files-grid-section">
+        <div class="col-lg-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="bi bi-grid-3x3-gap me-2"></i>Uploaded Files
+                    </h5>
+                    <span class="badge bg-light text-primary">@Model.ResourceFiles.Count files</span>
+                </div>
+                <div class="card-body">
+                    @if (Model.ResourceFiles.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped align-middle" id="filesTable">
+                                <thead class="table-primary">
+                                    <tr>
+                                        <th scope="col" style="width: 5%">#</th>
+                                        <th scope="col" style="width: 30%">
+                                            <i class="bi bi-file-earmark me-1"></i>File Name
+                                        </th>
+                                        <th scope="col" style="width: 10%">
+                                            <i class="bi bi-tags me-1"></i>Type
+                                        </th>
+                                        <th scope="col" style="width: 10%">
+                                            <i class="bi bi-hdd me-1"></i>Size
+                                        </th>
+                                        <th scope="col" style="width: 15%">
+                                            <i class="bi bi-calendar-event me-1"></i>Upload Date
+                                        </th>
+                                        <th scope="col" style="width: 10%">
+                                            <i class="bi bi-trash me-1"></i>Status
+                                        </th>
+                                        <th scope="col" class="text-center" style="width: 20%">
+                                            <i class="bi bi-gear me-1"></i>Actions
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.ResourceFiles.Count; i++)
+                                    {
+                                        var file = Model.ResourceFiles[i];
+                                        <tr>
+                                            <td>@(i + 1)</td>
+                                            <td>
+                                                <strong>@file.FileName</strong>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-file-type @GetBadgeClass(file.FileExtension)">
+                                                    @file.FileExtension.ToUpper()
+                                                </span>
+                                            </td>
+                                            <td>@file.GetFormattedFileSize()</td>
+                                            <td>
+                                                <small>
+                                                    @file.CreatedDate.ToLocalTime().ToString("MMM dd, yyyy")<br />
+                                                    <span class="text-muted">@file.CreatedDate.ToLocalTime().ToString("hh:mm tt")</span>
+                                                </small>
+                                            </td>
+                                            <td>
+                                                @if (file.IsDeleted)
+                                                {
+                                                    <span class="badge bg-danger">Deleted</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-success">Active</span>
+                                                }
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="action-buttons">
+                                                    <a asp-action="Download" 
+                                                       asp-route-id="@file.Id" 
+                                                       class="btn btn-sm btn-success"
+                                                       title="Download">
+                                                        <i class="bi bi-download"></i>
+                                                    </a>
+                                                    
+                                                    <button type="button" 
+                                                            class="btn btn-sm btn-danger"
+                                                            data-bs-toggle="modal" 
+                                                            data-bs-target="#deleteModal"
+                                                            data-file-id="@file.Id"
+                                                            data-file-name="@file.FileName"
+                                                            title="Delete">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-5">
+                            <i class="bi bi-folder2-open text-muted" style="font-size: 4rem;"></i>
+                            <h4 class="mt-3 text-muted">No files uploaded yet</h4>
+                            <p class="text-muted">Upload your first file using the form above</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="deleteModalLabel">
+                    <i class="bi bi-exclamation-triangle me-2"></i>Confirm Delete
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this file?</p>
+                <p><strong id="fileNameDisplay"></strong></p>
+                <div class="alert alert-warning" role="alert">
+                    <i class="bi bi-info-circle me-2"></i>
+                    This action will mark the file as deleted in the database.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="bi bi-x-circle me-1"></i>Cancel
+                </button>
+                <form asp-action="Delete" method="post" id="deleteForm">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" id="deleteFileId" />
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash me-1"></i>Delete File
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Handle delete modal
+        var deleteModal = document.getElementById('deleteModal');
+        if (deleteModal) {
+            deleteModal.addEventListener('show.bs.modal', function (event) {
+                var button = event.relatedTarget;
+                var fileId = button.getAttribute('data-file-id');
+                var fileName = button.getAttribute('data-file-name');
+                
+                var modalFileId = deleteModal.querySelector('#deleteFileId');
+                var modalFileName = deleteModal.querySelector('#fileNameDisplay');
+                
+                modalFileId.value = fileId;
+                modalFileName.textContent = fileName;
+            });
+        }
+
+        // File input change handler
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            var file = e.target.files[0];
+            if (file) {
+                var fileSize = file.size;
+                var maxSize = 10 * 1024 * 1024; // 10 MB
+                
+                if (fileSize > maxSize) {
+                    alert('File size exceeds 10 MB limit!');
+                    e.target.value = '';
+                }
+            }
+        });
+
+        // Auto-dismiss alerts after 5 seconds
+        setTimeout(function() {
+            var alerts = document.querySelectorAll('.alert-dismissible');
+            alerts.forEach(function(alert) {
+                var bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            });
+        }, 5000);
+    </script>
+}
+
+@functions {
+    string GetBadgeClass(string extension)
+    {
+        return extension.ToLowerInvariant() switch
+        {
+            ".zip" => "bg-warning text-dark",
+            ".doc" => "bg-primary",
+            ".docx" => "bg-primary",
+            ".xls" => "bg-success",
+            ".xlsx" => "bg-success",
+            _ => "bg-secondary"
+        };
+    }
+}
