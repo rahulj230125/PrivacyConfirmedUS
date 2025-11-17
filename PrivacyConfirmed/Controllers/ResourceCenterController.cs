@@ -36,6 +36,7 @@ namespace PrivacyConfirmed.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+            
             try
             {
                 var files = await _resourceFileService.GetAllFilesAsync();

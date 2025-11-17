@@ -20,6 +20,7 @@ appsettings.Development.json
 
 # Logs
 *.log
+Logs/
 
 # OS files
 .DS_Store
