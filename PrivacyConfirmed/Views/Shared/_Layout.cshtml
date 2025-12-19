@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 @* Enhance UI using Bootstrap 5. Preserve all @model and @Html helpers. Focus on layout, spacing, and modern design. *@
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,7 +11,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/PrivacyConfirmed.styles.css" asp-append-version="true" />
-    <meta name="description" content="Enterprise-grade identity and access management with India-first data residency" />
+    <meta name="description"
+        content="Enterprise-grade identity and access management with India-first data residency" />
     <style>
         /* Enhanced Navigation Styling */
 
@@ -35,11 +37,13 @@
             transition: all 0.3s ease;
             border-radius: 0.25rem;
             margin: 0 0.25rem;
+            color: white !important;
         }
 
         .navbar-nav .nav-link:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
+            color: white !important;
         }
 
         .navbar-nav .nav-link i {
@@ -130,7 +134,8 @@
 
         /* Content Wrapper - Fixed to prevent footer overlap */
         .content-wrapper {
-            min-height: calc(100vh - 76px - 400px); /* viewport height - navbar - footer height */
+            min-height: calc(100vh - 76px - 400px);
+            /* viewport height - navbar - footer height */
             padding-bottom: 8rem;
             position: relative;
             z-index: 1;
@@ -169,11 +174,13 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" asp-controller="Home" asp-action="Index">
-                    <img src="/images/logo.svg" alt="PrivacyConfirmed Logo" height="30" class="d-inline-block align-text-top me-2" />
+                    <img src="/images/PrivacyConfirmed_Transparent_White.png" alt="PrivacyConfirmed Logo" height="70"
+                        class="d-inline-block align-text-top me-2" />
                     <span>PrivacyConfirmed</span>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse" id="navbarSupportedContent">
@@ -200,7 +207,9 @@
                                         <i class="bi bi-terminal me-2"></i> Admin & Dev Console
                                     </a>
                                 </li>
-                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
                             </ul>
                         </li>
 
@@ -250,7 +259,7 @@
                     </ul>
 
                     <div class="d-flex gap-2">
-                        <a href="/trial" class="btn btn-outline-light">
+                        <a href="/trial" class="btn btn-light">
                             <i class="bi bi-rocket-takeoff me-1"></i> Start Free Trial
                         </a>
                         <a href="@Url.Action("ContactUs", "Home")" class="btn btn-light">
@@ -277,7 +286,8 @@
                         <a href="https://twitter.com/privacyconfirmed" class="text-muted me-3">
                             <i class="bi bi-twitter"></i>
                         </a>
-                        <a href="https://linkedin.com/company/privacyconfirmed" class="text-muted me-2" aria-label="LinkedIn">
+                        <a href="https://linkedin.com/company/privacyconfirmed" class="text-muted me-2"
+                            aria-label="LinkedIn">
                             <i class="bi bi-linkedin"></i>
                         </a>
                         <a href="https://github.com/privacyconfirmed" class="text-muted" aria-label="GitHub">
