@@ -1,124 +1,414 @@
-﻿@{
-    ViewData["Title"] = "Enterprise Identity & Access Management | PrivacyConfirmed";
+@{
+    ViewData["Title"] = "Secure Identity Management for Modern Enterprises | PrivacyConfirmed";
 }
 
-<div class="hero-section text-center bg-primary text-white py-5">
-    <div class="container">
-        <h1 class="display-4">Secure Identity Management for Modern Enterprises</h1>
-        <p class="lead">Enterprise-grade authentication and authorization with India-first data residency</p>
-        <div class="mt-4">
-            @* Use Url.Action for MVC controller actions *@
-            <a href="@Url.Action("ReqADemo", "Home")" class="btn btn-light btn-lg mx-2">Request Demo</a>
-            <a href="/trial" class="btn btn-outline-light btn-lg mx-2">Start Free Trial</a>
-        </div>
-    </div>
-</div>
+<script>
+    function switchTab(language) {
+        // Hide all code blocks
+        document.querySelectorAll('.code-block').forEach(block => {
+            block.style.display = 'none';
+        });
 
-<div class="overview-section py-5">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 text-center">
-                <p class="lead mb-4">At PrivacyConfirmed, we deliver a next-generation Identity Access Management (IAM) solution designed to meet the dual needs of enterprise-grade security and developer-friendly integration.</p>
-                <p class="lead mb-4">
-                    Enterprises today face increasing regulatory pressures, growing user expectations, and rapidly evolving cyber threats. With our IAM platform, you get <b>standards-compliant authentication and authorization</b> built on OIDC and OAuth2, ensuring interoperability with modern apps, APIs, and third-party systems.
-                </p>
-                <p class="lead mb-4">
-                    Our solution provides <b>Single Sign-On (SSO)</b> for seamless user experiences, <b>multi-factor authentication (MFA)</b> for risk-based security, and  <b>fine-grained access control (RBAC)</b> to protect sensitive data. For developers, we offer SDKs, clear documentation, and pre-built integrations to get apps running in hours—not weeks.
-                </p>
-                <p class="lead mb-4">
-                    Whether you’re a <b>CTO focused on compliance, a product manager delivering user experience, a security architect enforcing policies</b>, or a <b>developer integrating OAuth flows</b>, PrivacyConfirmed IAM delivers the clarity, compliance, and confidence you need.
-                </p>
-                <p class="lead mb-4">
-                    Scale with trust. Build with speed. Deploy with peace of mind.
-                </p>
-                <a href="@Url.Action("WhyChoose", "Home")" class="btn btn-primary mb-5">Learn Why Companies Choose Us</a>
-            </div>
-        </div>
-    </div>
-</div>
+        // Remove active class from all tabs
+        document.querySelectorAll('.code-tab').forEach(tab => {
+            tab.classList.remove('active');
+        });
 
-<div class="features-overview py-5 bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h2 class="mb-4">Enterprise-Grade IAM Platform</h2>
-                <p>Our solution provides:</p>
-                <ul class="feature-list">
-                    <li>Standards-compliant authentication with OIDC and OAuth2</li>
-                    <li>Seamless Single Sign-On (SSO) experiences</li>
-                    <li>Multi-factor authentication (MFA) for enhanced security</li>
-                    <li>Fine-grained access control (RBAC)</li>
-                </ul>
-            </div>
-            <div class="col-md-6">
-                <h2 class="mb-4">Developer-Focused Integration</h2>
-                <p>Get your apps running in hours with:</p>
-                <ul class="feature-list">
-                    <li>Comprehensive SDKs for major platforms</li>
-                    <li>Clear, practical documentation</li>
-                    <li>Pre-built components and examples</li>
-                    <li>Local support in your timezone</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+        // Show selected code block
+        document.getElementById('code-' + language).style.display = 'block';
 
-<div class="core-features py-5">
-    <div class="container">
-        <h2 class="text-center mb-4">Core Features</h2>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <h3 class="h4">Authentication & SSO</h3>
-                <ul class="list-unstyled">
-                    <li>✓ OIDC/OAuth 2.0 Compliant</li>
-                    <li>✓ Single Sign-On</li>
-                    <li>✓ Social Login Integration</li>
-                </ul>
-            </div>
-            <div class="col-md-4 mb-4">
-                <h3 class="h4">Advanced Security</h3>
-                <ul class="list-unstyled">
-                    <li>✓ Multi-Factor Authentication</li>
-                    <li>✓ Risk-Based Authentication</li>
-                    <li>✓ Fraud Detection</li>
-                </ul>
-            </div>
-            <div class="col-md-4 mb-4">
-                <h3 class="h4">Enterprise Controls</h3>
-                <ul class="list-unstyled">
-                    <li>✓ Role-Based Access Control</li>
-                    <li>✓ Audit Logging</li>
-                    <li>✓ Compliance Reporting</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+        // Add active class to clicked tab
+        event.target.classList.add('active');
+    }
+</script>
 
-<div class="case-study py-5 bg-light">
+<!-- Hero Section -->
+<div class="hero-section">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-md-6">
-                <h2>Trusted by Leading Indian Enterprises</h2>
-                <p class="lead">A leading fintech company reduced their authentication costs by 40% while maintaining complete data residency in India. With our local support team and INR pricing, they achieved compliance and enhanced security within budget.</p>
-                <a href="/case-studies" class="btn btn-primary">Read More Success Stories</a>
+            <div class="col-lg-6 hero-content">
+                <div class="badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    India-First Data Residency
+                </div>
+
+                <h1 class="hero-title">Secure Identity Management for Modern Enterprises</h1>
+
+                <p class="hero-subtitle">
+                    Enterprise-grade authentication and authorization with India-first data residency
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="/trial" class="btn-primary">
+                        Start Free Trial
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="@Url.Action("ReqADemo", "Home")" class="btn-outline">Request Demo</a>
+                </div>
+
+                <div class="hero-features">
+                    <div class="hero-feature">
+                        <div class="hero-feature-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <div class="hero-feature-text">
+                            <div class="hero-feature-title">SOC 2</div>
+                            <div class="hero-feature-subtitle">Compliant</div>
+                        </div>
+                    </div>
+
+                    <div class="hero-feature">
+                        <div class="hero-feature-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="16 18 22 12 16 6"/>
+                                <polyline points="8 6 2 12 8 18"/>
+                            </svg>
+                        </div>
+                        <div class="hero-feature-text">
+                            <div class="hero-feature-title">OIDC/OAuth2</div>
+                            <div class="hero-feature-subtitle">Standards</div>
+                        </div>
+                    </div>
+
+                    <div class="hero-feature">
+                        <div class="hero-feature-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                        </div>
+                        <div class="hero-feature-text">
+                            <div class="hero-feature-title">24/7</div>
+                            <div class="hero-feature-subtitle">Support</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6">
-                <img src="/images/india-map-coverage.svg" alt="Map showing PrivacyConfirmed's coverage across India" class="img-fluid" />
+
+            <div class="col-lg-6">
+                <div class="hero-image">
+                    <div class="hero-image-bg">
+                        <div class="hero-image-placeholder">
+                            <!-- Replace with actual India map security illustration -->
+                            <img src="/images/india.png" alt="India Map with Security" style="max-width: 100%; height: auto;" onerror="this.parentElement.innerHTML='<div style=\'font-size: 64px;\'>🔒</div><div>India-First Security</div>'" />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="cta-section py-5 bg-primary text-white">
-    <div class="container text-center">
-        <h2>Ready to Secure Your Enterprise?</h2>
-        <p class="lead">Start your free trial today or schedule a demo with our solutions team</p>
-        <p class="mb-4">Scale with trust. Build with speed. Deploy with peace of mind.</p>
-        <div class="mt-4">
-            <a href="/contact" class="btn btn-light btn-lg mx-2">Contact Sales</a>
-            <a href="/docs" class="btn btn-outline-light btn-lg mx-2">View Documentation</a>
+<!-- Overview Section -->
+<div class="overview-section">
+    <div class="container">
+        <div class="overview-text">
+            <p>
+                At PrivacyConfirmed, we deliver a next-generation Identity Access Management (IAM) solution designed to meet the dual needs of enterprise-grade security and developer-friendly integration.
+            </p>
+            <p>
+                Enterprises today face increasing regulatory pressures, growing user expectations, and rapidly evolving cyber threats. With our IAM platform, you get standards-compliant authentication and authorization built on OIDC and OAuth2, ensuring interoperability with modern apps, APIs, and third-party systems.
+            </p>
+            <p>
+                Our solution provides Single Sign-On (SSO) for seamless user experiences, multi-factor authentication (MFA) for risk-based security, and fine-grained access control (RBAC) to protect sensitive data. For developers, we offer SDKs, clear documentation, and pre-built integrations to get apps running in hours—not weeks.
+            </p>
+            <p>
+                Whether you're a CTO focused on compliance, a product manager delivering user experience, a security architect enforcing policies, or a developer integrating OAuth flows, PrivacyConfirmed IAM delivers the clarity, compliance, and confidence you need.
+            </p>
         </div>
+
+        <div class="pillars-section">
+            <div class="pillar">
+                <div class="pillar-icon"></div>
+                <div class="pillar-text">Scale with trust</div>
+            </div>
+            <div class="pillar">
+                <div class="pillar-icon"></div>
+                <div class="pillar-text">Build with speed</div>
+            </div>
+            <div class="pillar">
+                <div class="pillar-icon"></div>
+                <div class="pillar-text">Deploy with peace of mind</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Enterprise-Grade IAM Platform -->
+<div class="platform-section">
+    <div class="container">
+        <h2 class="section-title">Enterprise-Grade IAM Platform</h2>
+        <p class="section-subtitle">Our solution provides:</p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <svg class="feature-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                <div class="feature-card-text">Standards-compliant authentication with OIDC and OAuth2</div>
+            </div>
+
+            <div class="feature-card">
+                <svg class="feature-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                <div class="feature-card-text">Seamless Single Sign-On (SSO) experiences</div>
+            </div>
+
+            <div class="feature-card">
+                <svg class="feature-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                <div class="feature-card-text">Multi-factor authentication (MFA) for enhanced security</div>
+            </div>
+
+            <div class="feature-card">
+                <svg class="feature-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                <div class="feature-card-text">Fine-grained access control (RBAC)</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Developer-Focused Integration -->
+<div class="platform-section" style="background: white;">
+    <div class="container">
+        <h2 class="section-title">Developer-Focused Integration</h2>
+        <p class="section-subtitle">Get your apps running in hours with:</p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <svg class="feature-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                <div class="feature-card-text">Comprehensive SDKs for major platforms</div>
+            </div>
+
+            <div class="feature-card">
+                <svg class="feature-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                <div class="feature-card-text">Clear, practical documentation</div>
+            </div>
+
+            <div class="feature-card">
+                <svg class="feature-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                <div class="feature-card-text">Pre-built components and examples</div>
+            </div>
+
+            <div class="feature-card">
+                <svg class="feature-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                <div class="feature-card-text">Support in your timezone</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Core Features -->
+<div class="core-features-section">
+    <div class="container">
+        <h2 class="section-title">Core Features</h2>
+
+        <div class="features-row">
+            <div class="feature-column">
+                <h3>Authentication & SSO</h3>
+                <ul class="feature-list">
+                    <li>OIDC/OAuth 2.0 Compliant</li>
+                    <li>Single Sign-On</li>
+                    <li>Social Login Integration</li>
+                </ul>
+            </div>
+
+            <div class="feature-column">
+                <h3>Advanced Security</h3>
+                <ul class="feature-list">
+                    <li>Multi-Factor Authentication</li>
+                    <li>Risk-Based Authentication</li>
+                    <li>Fraud Detection</li>
+                </ul>
+            </div>
+
+            <div class="feature-column">
+                <h3>Enterprise Controls</h3>
+                <ul class="feature-list">
+                    <li>Role-Based Access Control</li>
+                    <li>Audit Logging</li>
+                    <li>Compliance Reporting</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Developer Integration -->
+<div class="developer-section">
+    <div class="container">
+        <div class="code-section">
+            <div style="text-align: center; margin-bottom: 48px;">
+                <div class="developer-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;">
+                        <polyline points="16 18 22 12 16 6"/>
+                        <polyline points="8 6 2 12 8 18"/>
+                    </svg>
+                    Developer First
+                </div>
+                <h2 class="section-title" style="margin-bottom: 12px;">Integrate in Minutes</h2>
+                <p class="section-subtitle">
+                    SDKs for every major language and framework. Start securing your apps with just a few lines of code.
+                </p>
+            </div>
+
+            <div class="code-tabs">
+                <button class="code-tab active" onclick="switchTab('nodejs')">Node.js</button>
+                <button class="code-tab" onclick="switchTab('python')">Python</button>
+                <button class="code-tab" onclick="switchTab('java')">Java</button>
+                <button class="code-tab" onclick="switchTab('go')">Go</button>
+            </div>
+
+            <div class="code-block" id="code-nodejs">
+                <pre>import { PrivacyConfirmed } from '@@privacyconfirmed/node';
+
+const pc = new PrivacyConfirmed({
+  domain: 'your-domain.privacyconfirmed.in',
+  clientId: process.env.PC_CLIENT_ID,
+  clientSecret: process.env.PC_CLIENT_SECRET
+});
+
+// Authenticate user
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  const session = await pc.authenticate({
+    email,
+    password,
+    mfaEnabled: true
+  });
+  res.json({ token: session.accessToken });
+});</pre>
+            </div>
+
+            <div class="code-block" id="code-python" style="display: none;">
+                <pre>from privacyconfirmed import PrivacyConfirmed
+
+pc = PrivacyConfirmed(
+    domain='your-domain.privacyconfirmed.in',
+    client_id=os.environ['PC_CLIENT_ID'],
+    client_secret=os.environ['PC_CLIENT_SECRET']
+)
+
+# Authenticate user
+@@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    session = pc.authenticate(
+        email=data['email'],
+        password=data['password'],
+        mfa_enabled=True
+    )
+    return jsonify({'token': session.access_token})</pre>
+            </div>
+
+            <div class="code-block" id="code-java" style="display: none;">
+                <pre>import com.privacyconfirmed.PrivacyConfirmed;
+
+PrivacyConfirmed pc = new PrivacyConfirmed.Builder()
+    .domain("your-domain.privacyconfirmed.in")
+    .clientId(System.getenv("PC_CLIENT_ID"))
+    .clientSecret(System.getenv("PC_CLIENT_SECRET"))
+    .build();
+
+// Authenticate user
+@@PostMapping("/login")
+public ResponseEntity&lt;Map&lt;String, String&gt;&gt; login(@@RequestBody LoginRequest req) {
+    Session session = pc.authenticate(
+        req.getEmail(),
+        req.getPassword(),
+        true  // MFA enabled
+    );
+    return ResponseEntity.ok(Map.of("token", session.getAccessToken()));
+}</pre>
+            </div>
+
+            <div class="code-block" id="code-go" style="display: none;">
+                <pre>import "github.com/privacyconfirmed/go-sdk"
+
+pc := privacyconfirmed.New(privacyconfirmed.Config{
+    Domain:       "your-domain.privacyconfirmed.in",
+    ClientID:     os.Getenv("PC_CLIENT_ID"),
+    ClientSecret: os.Getenv("PC_CLIENT_SECRET"),
+})
+
+// Authenticate user
+func login(w http.ResponseWriter, r *http.Request) {
+    var req LoginRequest
+    json.NewDecoder(r.Body).Decode(&req)
+
+    session, err := pc.Authenticate(privacyconfirmed.AuthRequest{
+        Email:      req.Email,
+        Password:   req.Password,
+        MFAEnabled: true,
+    })
+
+    json.NewEncoder(w).Encode(map[string]string{
+        "token": session.AccessToken,
+    })
+}</pre>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">SDK Languages</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">API Endpoints</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">API Uptime</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA Section -->
+<div class="cta-section">
+    <div class="container">
+        <h2>Ready to Secure Your Enterprise?</h2>
+        <p class="lead">
+            Start your free trial today or schedule a demo with our solutions team
+        </p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+            <a href="/trial" class="btn-white">
+                Start Free Trial
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+            <a href="@Url.Action("ReqADemo", "Home")" class="btn-outline-white">Schedule a Demo</a>
+        </div>
+        <p class="tagline">
+            Scale with trust. Build with speed. Deploy with peace of mind.
+        </p>
     </div>
 </div>
