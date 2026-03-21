@@ -16,7 +16,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 git branch: "${params.BRANCH_NAME}",
-                    url: 'https://github.com/rahulj230125/PrivacyConfirmed.git',
+                    url: 'git://github.com/rahulj230125/PrivacyConfirmed.git',
 					credentialsId: 'jenkins-github-privacyconfirmed-repo'
             }
         }
