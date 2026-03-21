@@ -54,26 +54,32 @@ pipeline {
             }
         }
 
-        stage('Deploy to App VM') {
-            steps {
-                sshagent(['app-vm-ssh']) {
-                    sh """
-                    ssh -o StrictHostKeyChecking=no ${APP_USER}@${APP_VM} '
-                        
-                        docker login nexus.pc:5001 -u ${NEXUS_USER} -p ${NEXUS_PASS}
+		stage('Deploy to App VM') {
+			steps {
+				withCredentials([usernamePassword(
+					credentialsId: 'nexus-creds',
+					usernameVariable: 'NEXUS_USER',
+					passwordVariable: 'NEXUS_PASS'
+				)]) {
+					sshagent(['app-vm-ssh']) {
+						sh """
+						ssh -o StrictHostKeyChecking=no ${APP_USER}@${APP_VM} '
+							
+							echo "${NEXUS_PASS}" | docker login nexus.pc:5001 -u "${NEXUS_USER}" --password-stdin
 
-                        docker pull ${NEXUS_DEV}/${IMAGE_NAME}:${BUILD_NUMBER}
+							docker pull ${NEXUS_DEV}/${IMAGE_NAME}:${BUILD_NUMBER}
 
-                        docker rm -f ${CONTAINER_NAME} || true
+							docker rm -f ${CONTAINER_NAME} || true
 
-                        docker run -d -p 5000:8080 \
-                          --name ${CONTAINER_NAME} \
-                          ${NEXUS_DEV}/${IMAGE_NAME}:${BUILD_NUMBER}
-                    '
-                    """
-                }
-            }
-        }
+							docker run -d -p 5000:8080 \
+							  --name ${CONTAINER_NAME} \
+							  ${NEXUS_DEV}/${IMAGE_NAME}:${BUILD_NUMBER}
+						'
+						"""
+					}
+				}
+			}
+		}
     }
 
     post {
