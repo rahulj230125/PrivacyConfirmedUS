@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/PrivacyConfirmed.styles.css" asp-append-version="true" />
+    <!--link rel="stylesheet" href="~/PrivacyConfirmed.styles.css" asp-append-version="true" /-->
     <meta name="description"
         content="Enterprise-grade identity and access management with India-first data residency" />
     <style>
@@ -19,6 +19,7 @@
         .navbar {
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             padding: 0.75rem 0;
+            background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
         }
 
         .navbar-brand {
@@ -37,13 +38,13 @@
             transition: all 0.3s ease;
             border-radius: 0.25rem;
             margin: 0 0.25rem;
-            color: white !important;
+            color: black !important; 
         }
 
         .navbar-nav .nav-link:hover {
             background-color: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
-            color: white !important;
+            color: black !important;
         }
 
         .navbar-nav .nav-link i {
@@ -63,6 +64,7 @@
             padding: 0.75rem 1.5rem;
             font-weight: 500;
             transition: all 0.2s ease;
+            color: #212529;
         }
 
         .dropdown-item:hover {
@@ -72,6 +74,53 @@
 
         .dropdown-item i {
             width: 1.5rem;
+        }
+
+        /* Submenu Styling */
+        .dropdown-submenu-item {
+            position: relative;
+            margin-bottom: 0.005rem;
+            padding-bottom: 0;
+            margin-top: 0;
+        }
+
+        .dropdown-submenu-item:not(:last-child) {
+            margin-bottom: 0.005rem;
+        }
+
+        .dropdown-submenu-item .submenu-hover {
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .dropdown-submenu-item .submenu-hover-summary {
+            margin-top: -0.18rem;
+            padding-top: 0;
+            margin-bottom: -0.18rem;
+        }
+
+        .dropdown-submenu-item:hover {
+            margin-bottom: 0.5rem !important;
+            z-index: 1;
+        }
+
+        .dropdown-submenu-item:hover .submenu-hover,
+        .dropdown-submenu-item:hover .submenu-hover-summary {
+            background-color: #e9ecef;
+            color: #212529;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+        }
+
+        .dropdown-submenu-item .submenu-hover {
+            transition: background 0.2s, color 0.2s;
+            border-radius: 0.25rem 0.25rem 0 0;
+        }
+
+        .dropdown-submenu-item .submenu-hover-summary {
+            transition: background 0.2s, color 0.2s;
+            border-radius: 0 0 0.25rem 0.25rem;
         }
 
         /* CTA Buttons */
@@ -88,7 +137,7 @@
         /* Footer Styling */
         .footer {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-top: 3px solid #0d6efd;
+            border-top: 3px solid purple;
         }
 
         .footer h5 {
@@ -171,12 +220,12 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-nav bg-light fixed-top">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" asp-controller="Home" asp-action="Index">
-                    <img src="/images/PrivacyConfirmed_Transparent_White.png" alt="PrivacyConfirmed Logo" height="70"
-                        class="d-inline-block align-text-top me-2" />
-                    <span>PrivacyConfirmed</span>
+                    <img src="/images/PrivacyConfirmed_Logo_Black.png" alt="PrivacyConfirmed Logo" height="70"
+                         class="d-inline-block align-text-top me-2" style="opacity: 1;"/>
+                    <span class="nav-link">PrivacyConfirmed</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -185,85 +234,99 @@
                 </button>
                 <div class="navbar-collapse collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <!-- Product Dropdown -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="productDropdown" role="button"
+                        <!-- Platform Dropdown -->
+                        <li-- class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="platformDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-grid-3x3-gap me-1"></i> Product
+                                Platform
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="productDropdown">
-                                <li>
-                                    <a class="dropdown-item" asp-controller="Home" asp-action="CoreFeatures">
-                                        <i class="bi bi-star me-2"></i> Core Features
-                                    </a>
+                            <ul class="dropdown-menu" aria-labelledby="platformDropdown" style="min-width: 300px;">
+                                <li class="dropdown-submenu-item">
+                                    <a class="dropdown-item fw-bold submenu-hover" asp-controller="Home" asp-action="CoreFeatures">Core Features</a>
+                                    <div class="px-4 text-muted submenu-hover-summary" style="font-size: 0.97em;">Core Features
+                                    </div>
                                 </li>
-                                <li>
-                                    <a class="dropdown-item" asp-controller="Home" asp-action="HowItHelps">
-                                        <i class="bi bi-lightbulb me-2"></i> How It Helps
-                                    </a>
+                                <li class="dropdown-submenu-item">
+                                    <a class="dropdown-item fw-bold submenu-hover" asp-controller="Home" asp-action="ComparisonMatrix">Comparison Matrix</a>
+                                    <div class="px-4 text-muted submenu-hover-summary" style="font-size: 0.97em;">Comparison Matrix
+                                    </div>
                                 </li>
-                                <li>
-                                    <a class="dropdown-item" asp-controller="Home" asp-action="AdminConsole">
-                                        <i class="bi bi-terminal me-2"></i> Admin & Dev Console
-                                    </a>
+                                <li class="dropdown-submenu-item">
+                                    <a class="dropdown-item fw-bold submenu-hover" asp-controller="Home" asp-action="WhyChoose">Why Us</a>
+                                    <div class="px-4 text-muted submenu-hover-summary" style="font-size: 0.97em;">
+                                        Why Us
+                                    </div>
                                 </li>
-                                <li>
-                                    <hr class="dropdown-divider">
+                                <!--li class="dropdown-submenu-item">
+                                    <a class="dropdown-item fw-bold submenu-hover" asp-controller="Home" asp-action="LegalAndCompliance">Compliance</a>
+                                    <div class="px-4 text-muted submenu-hover-summary" style="font-size: 0.97em;">Compliance
+                                    </div>
+                                </li-->
+                                <li class="dropdown-submenu-item">
+                                    <a class="dropdown-item fw-bold submenu-hover" asp-controller="Home" asp-action="HowItHelps">How It Helps</a>
+                                    <div class="px-4 text-muted submenu-hover-summary" style="font-size: 0.97em;">
+                                        How It Helps
+                                    </div>
+                                </li>
+                                <li class="dropdown-submenu-item">
+                                    <a class="dropdown-item fw-bold submenu-hover" asp-controller="Home" asp-action="Pricing">Pricing</a>
+                                    <div class="px-4 text-muted submenu-hover-summary" style="font-size: 0.97em;">Pricing
+                                    </div>
                                 </li>
                             </ul>
                         </li>
-
-                        <!-- Resources Dropdown -->
+                        <!-- Developers Dropdown -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button"
+                            <a class="nav-link dropdown-toggle" href="#" id="developersDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-book me-1"></i> Resources
+                                Developers
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="resourcesDropdown">
-                                <li>
-                                    <a class="dropdown-item" asp-controller="ResourceCenter" asp-action="Index">
-                                        <i class="bi bi-folder2-open me-2"></i> Resource Center
-                                    </a>
+                            <ul class="dropdown-menu" aria-labelledby="developersDropdown" style="min-width: 300px;">
+                                <li class="dropdown-submenu-item">
+                                    <a class="dropdown-item fw-bold submenu-hover" asp-controller="Home" asp-action="Technical">Documentation</a>
+                                    <div class="px-4 text-muted submenu-hover-summary" style="font-size: 0.97em;">Documentation
+                                    </div>
                                 </li>
-                                <li>
-                                    <a class="dropdown-item" asp-controller="Home" asp-action="Technical">
-                                        <i class="bi bi-file-earmark-code me-2"></i> Documentation
-                                    </a>
+                                <li class="dropdown-submenu-item">
+                                    <a class="dropdown-item fw-bold submenu-hover" asp-controller="ResourceCenter" asp-action="Index">Resource Center</a>
+                                    <div class="px-4 text-muted submenu-hover-summary" style="font-size: 0.97em;">
+                                        Manage your documents
+                                    </div>
                                 </li>
-                                <li>
-                                    <a class="dropdown-item" asp-controller="Home" asp-action="FAQ">
-                                        <i class="bi bi-question-circle me-2"></i> FAQ
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" asp-controller="Home" asp-action="ComparisonMatrix">
-                                        <i class="bi bi-table me-2"></i> Comparison Matrix
-                                    </a>
+                                <li class="dropdown-submenu-item">
+                                    <a class="dropdown-item fw-bold submenu-hover" asp-controller="Home" asp-action="FAQ">FAQ</a>
+                                    <div class="px-4 text-muted submenu-hover-summary" style="font-size: 0.97em;">FAQ
+                                    </div>
                                 </li>
                             </ul>
                         </li>
-
-                        <!-- Compliance -->
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="LegalAndCompliance">
-                                <i class="bi bi-shield-check me-1"></i> Compliance
+                        <!-- Company Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="companyDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Company
                             </a>
-                        </li>
-
-                        <!-- Pricing -->
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="Pricing">
-                                <i class="bi bi-tag me-1"></i> Pricing
-                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="companyDropdown" style="min-width: 300px;">
+                                <li class="dropdown-submenu-item"> <!--Not implemented yet-->
+                                    <a class="dropdown-item fw-bold submenu-hover" asp-controller="Home" asp-action="About">About</a>
+                                    <div class="px-4 text-muted submenu-hover-summary" style="font-size: 0.97em;">About
+                                    </div>
+                                </li>
+                                <li class="dropdown-submenu-item">
+                                    <a class="dropdown-item fw-bold submenu-hover" asp-controller="Home" asp-action="ContactUs">Contact Us</a>
+                                    <div class="px-4 text-muted submenu-hover-summary" style="font-size: 0.97em;">
+                                        Get in Touch
+                                    </div>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
-
                     <div class="d-flex gap-2">
-                        <a href="/trial" class="btn btn-light">
-                            <i class="bi bi-rocket-takeoff me-1"></i> Start Free Trial
+                        <a href="@Url.Action("ContactUs", "Home")" class="btn btn-primary">
+                            Start Free Trial
                         </a>
-                        <a href="@Url.Action("ContactUs", "Home")" class="btn btn-light">
-                            <i class="bi bi-envelope-fill me-1"></i> Contact Us
+                        <a href="@Url.Action("ContactUs", "Home")" class="btn btn-primary">
+                            Contact Sales
                         </a>
                     </div>
                 </div>
@@ -280,9 +343,9 @@
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <h5>PrivacyConfirmed</h5>
-                    <p class="text-muted">Enterprise-grade identity and access management</p>
-                    <p class="text-muted">with India-first data residency</p>
+                    
                     <div class="social-icons mt-3">
+                        <p class="text-muted">Enterprise-grade identity and access management with <br />India-first data residency</p>
                         <a href="https://twitter.com/privacyconfirmed" class="text-muted me-3">
                             <i class="bi bi-twitter"></i>
                         </a>
@@ -309,16 +372,6 @@
                                 <i class="bi bi-tag me-2 text-primary"></i>Pricing
                             </a>
                         </li>
-                        <li>
-                            <a href="@Url.Action("Security", "Home")" class="text-muted">
-                                <i class="bi bi-shield-check me-2 text-primary"></i>Security
-                            </a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Enterprise", "Home")" class="text-muted">
-                                <i class="bi bi-building me-2 text-primary"></i>Enterprise
-                            </a>
-                        </li>
                     </ul>
                 </div>
 
@@ -330,21 +383,6 @@
                                 <i class="bi bi-book me-2 text-primary"></i>Documentation
                             </a>
                         </li>
-                        <li>
-                            <a href="@Url.Action("Api", "Home")" class="text-muted">
-                                <i class="bi bi-code-square me-2 text-primary"></i>API Reference
-                            </a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Sdks", "Home")" class="text-muted">
-                                <i class="bi bi-box me-2 text-primary"></i>SDKs
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/blog" class="text-muted">
-                                <i class="bi bi-newspaper me-2 text-primary"></i>Blog
-                            </a>
-                        </li>
                     </ul>
                 </div>
 
@@ -352,23 +390,13 @@
                     <h5>Company</h5>
                     <ul class="list-unstyled">
                         <li>
-                            <a href="/about" class="text-muted">
+                            <a href="@Url.Action("About", "Home")" class="text-muted">
                                 <i class="bi bi-info-circle me-2 text-primary"></i>About
                             </a>
                         </li>
                         <li>
                             <a href="@Url.Action("ContactUs", "Home")" class="text-muted">
                                 <i class="bi bi-envelope me-2 text-primary"></i>Contact
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/privacy" class="text-muted">
-                                <i class="bi bi-shield-lock me-2 text-primary"></i>Privacy
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/terms" class="text-muted">
-                                <i class="bi bi-file-text me-2 text-primary"></i>Terms
                             </a>
                         </li>
                     </ul>
@@ -378,18 +406,8 @@
                     <h5>Support</h5>
                     <ul class="list-unstyled">
                         <li>
-                            <a href="/help" class="text-muted">
+                            <a href="@Url.Action("faq", "Home")" class="text-muted">
                                 <i class="bi bi-question-circle me-2 text-primary"></i>Help Center
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/status" class="text-muted">
-                                <i class="bi bi-heart-pulse me-2 text-primary"></i>Status
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/community" class="text-muted">
-                                <i class="bi bi-people me-2 text-primary"></i>Community
                             </a>
                         </li>
                     </ul>
@@ -408,7 +426,7 @@
                     </p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
-                    <span class="badge-india">
+                    <span class="badge">
                         <img src="/images/india-flag.svg" alt="India Flag" height="16" class="me-2" />
                         Made with pride in India
                     </span>

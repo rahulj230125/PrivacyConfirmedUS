@@ -1,132 +1,139 @@
-@{
+﻿@{
     ViewData["Title"] = "Why Choose PrivacyConfirmed | Enterprise IAM Solution";
 }
 
-<div class="hero-section">
-    <div class="container py-5">
-        <h1 class="display-4 text-white text-center mb-4">Why Choose PrivacyConfirmed</h1>
-        <p class="lead text-white text-center">Your Partner in Secure, Compliant, and Developer-Friendly Identity Management</p>
+<!-- Submenu Navigation (above pill navigation, embossed pill shape bar) -->
+<div class="container" style="padding-top: 5rem;">
+    <div class="d-flex justify-content-center">
+        <div style="background: #fff; box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1.5px 4px rgba(0,0,0,0.08); border-radius: 3rem; padding: 0.5rem 1.5rem; display: inline-block;">
+            <ul class="nav nav-pills justify-content-center" style="gap: 0.5rem;">
+                <li class="nav-item">
+                    <a class="round_sub_nav_button_in_active rounded-pill" asp-controller="Home" asp-action="CoreFeatures">Core Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="round_sub_nav_button_in_active rounded-pill" asp-controller="Home" asp-action="ComparisonMatrix">Comparison Matrix</a>
+                </li>
+                <!--li class="nav-item">
+                    <a class="round_sub_nav_button_in_active rounded-pill" asp-controller="Home" asp-action="LegalAndCompliance">Legal & Compliance</a>
+                </li-->
+                <li class="nav-item">
+                    <a class="round_sub_nav_button_active card active rounded-pill" asp-controller="Home" asp-action="WhyChoose">Why Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="round_sub_nav_button_in_active rounded-pill" asp-controller="Home" asp-action="HowItHelps">How It Helps</a>
+                </li>
+                <li class="nav-item">
+                    <a class="round_sub_nav_button_in_active rounded-pill" asp-controller="Home" asp-action="Pricing">Pricing</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
-
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <div class="card shadow-sm mb-5">
-                <div class="card-body p-4">
-                    <h2 class="h3 mb-4">Next-Generation IAM for Modern Enterprises</h2>
-                    <p class="lead">At PrivacyConfirmed, we deliver a next-generation Identity Access Management (IAM) solution designed to meet the dual needs of enterprise-grade security and developer-friendly integration.</p>
-                    <p>Enterprises today face increasing regulatory pressures, growing user expectations, and rapidly evolving cyber threats. With our IAM platform, you get standards-compliant authentication and authorization built on OIDC and OAuth2, ensuring interoperability with modern apps, APIs, and third-party systems.</p>
-                </div>
-            </div>
-
-            <div class="row mb-5">
-                <div class="col-md-6">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-center mb-3">
-                                <i class="bi bi-shield-check text-primary h3 mb-0 me-3"></i>
-                                <h3 class="h5 mb-0">Enterprise Security</h3>
+<div class="container py-2">
+    <div class="row">
+        <div class="col-lg-12">
+            <section id="Developers" class="mb-5 section-tab" style="padding-top: 3rem;">
+                <div class="card mb-4">
+                    <div class="card-body row align-items-center flex-row-reverse">
+                        <div class="col-lg-6">
+                            <div class="hero-image-placeholder">
+                                <!-- Replace with actual India map security illustration -->
+                                <img src="/images/whychoose/modernarch.png" alt="Built for Modern Architecture" style="max-width: 80%; height: auto;" onerror="this.parentElement.innerHTML='<div style=\'font-size: 64px;\'>🔒</div><div>Represents secure access and identity protection.</div>'" />
                             </div>
-                            <ul class="list-unstyled mb-0">
-                                <li class="mb-2">? Single Sign-On (SSO)</li>
-                                <li class="mb-2">? Multi-Factor Authentication (MFA)</li>
-                                <li>? Role-Based Access Control (RBAC)</li>
+                        </div>
+                        <div class="col-lg-6">
+                            <strong class="d-block mb-2">Built for Modern Architecture</strong>
+                            <p>
+                                Unlike legacy IAM systems, PrivacyConfirmed is built for:
+                            </p>
+                            <ul>
+                                <li>Microservices</li>
+                                <li></li>
+                                <li>API-first platforms</li>
+                                <li>API-first platforms</li>
+                                <li>Cloud-native deployments</li>
+                                <li>Multi-tenant SaaS environments</li>
                             </ul>
+                            <p>Identity is not an add-on — it’s infrastructure.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-center mb-3">
-                                <i class="bi bi-code-square text-primary h3 mb-0 me-3"></i>
-                                <h3 class="h5 mb-0">Developer Experience</h3>
-                            </div>
-                            <ul class="list-unstyled mb-0">
-                                <li class="mb-2">? Comprehensive SDKs</li>
-                                <li class="mb-2">? Clear Documentation</li>
-                                <li>? Pre-built Integrations</li>
+            </section>
+            <section id="Security-Compliance" class="mb-5 section-tab">
+                <div class="card mb-4">
+                    <div class="card-body row align-items-center flex-row-reverse">
+                        <div class="col-lg-6">
+                            <strong class="d-block mb-2">Policy-Driven Security</strong>
+                            <p>Define authentication and authorization rules centrally.</p>
+                            <p>Apply them consistently across applications, APIs, and environments.</p>
+                            <ul>
+                                <li>Role-based access control (RBAC)</li>
+                                <li>Scope-based API authorization</li>
+                                <li>Context-aware policy enforcement</li>
+                                <li>Token-level permission modeling</li>
                             </ul>
+                            <p>Every access decision is evaluated through a unified policy engine.</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="hero-image-placeholder">
+                                <!-- Replace with actual India map security illustration -->
+                                <img src="/images/whychoose/policydrivensec.png" alt="Policy-Driven Security" style="max-width: 80%; height: auto;" onerror="this.parentElement.innerHTML='<div style=\'font-size: 64px;\'>🔒</div><div>Represents secure access and identity protection.</div>'" />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="card shadow-sm mb-5">
-                <div class="card-body p-4">
-                    <h3 class="h4 mb-4">India-First Capabilities</h3>
-                    <div class="row">
-                        <div class="col-md-4 mb-4 mb-md-0">
-                            <div class="text-center">
-                                <i class="bi bi-database-check text-primary h1 mb-3"></i>
-                                <h4 class="h6">Data Residency</h4>
-                                <p class="small mb-0">Complete compliance with local regulations</p>
+            <section id="Product-UX-Teams" class="mb-5 section-tab">
+                <div class="card mb-4">
+                    <div class="card-body row align-items-center flex-row-reverse">
+                        <div class="col-lg-6">
+                            <div class="hero-image-placeholder">
+                                <!-- Replace with actual India map security illustration -->
+                                <img src="/images/whychoose/developerfirstdesign.png" alt="Developer-First by Design" style="max-width: 80%; height: auto;" onerror="this.parentElement.innerHTML='<div style=\'font-size: 64px;\'>🔒</div><div>Represents secure access and identity protection.</div>'" />
                             </div>
                         </div>
-                        <div class="col-md-4 mb-4 mb-md-0">
-                            <div class="text-center">
-                                <i class="bi bi-currency-exchange text-primary h1 mb-3"></i>
-                                <h4 class="h6">INR Pricing</h4>
-                                <p class="small mb-0">Transparent pricing for all scales</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="text-center">
-                                <i class="bi bi-headset text-primary h1 mb-3"></i>
-                                <h4 class="h6">Local Support</h4>
-                                <p class="small mb-0">Dedicated teams in your timezone</p>
-                            </div>
+                        <div class="col-lg-6">
+                            <strong class="d-block mb-2">Developer-First by Design</strong>
+                            <p>OAuth flows shouldn’t slow your product team down.</p>
+                            <p>PrivacyConfirmed provides:</p>
+                            <ul>
+                                <li>Clear SDKs</li>
+                                <li>Clean REST APIs</li>
+                                <li>Pre-configured OAuth clients</li>
+                                <li>Secure default configurations</li>
+                                <li>Detailed documentation and examples</li>
+                            </ul>
+                            <p>Integrate secure identity flows in hours — not weeks.</p>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="text-center mb-5">
-                <h3 class="h4 mb-4">For Every Stakeholder</h3>
-                <div class="row g-4">
-                    <div class="col-md-6 col-lg-3">
-                        <div class="card h-100 border-0 shadow-sm">
-                            <div class="card-body">
-                                <h4 class="h6">CTOs</h4>
-                                <p class="small mb-0">Focus on compliance and scalability</p>
-                            </div>
+            <section id="security" class="mb-5 section-tab">
+                <div class="card mb-4 fade-in">
+                    <div class="card-body row align-items-center flex-row-reverse">
+                        <div class="col-lg-6">
+                            <strong class="d-block mb-2">Enterprise-Grade Without Enterprise Complexity</strong>
+                            <ul>
+                                <li>Multi-Factor Authentication (MFA)</li>
+                                <li>Risk-adaptive authentication</li>
+                                <li>Secure JWT issuance & rotation</li>
+                                <li>Audit logs and observability</li>
+                                <li>Key rotation & JWKS endpoints</li>
+                                <li>Data residency controls (optional region selection)</li>
+                            </ul>
+                            <p>Deploy confidently without building identity from scratch.</p>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="card h-100 border-0 shadow-sm">
-                            <div class="card-body">
-                                <h4 class="h6">Product Managers</h4>
-                                <p class="small mb-0">Deliver superior UX</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="card h-100 border-0 shadow-sm">
-                            <div class="card-body">
-                                <h4 class="h6">Security Architects</h4>
-                                <p class="small mb-0">Enforce robust policies</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="card h-100 border-0 shadow-sm">
-                            <div class="card-body">
-                                <h4 class="h6">Developers</h4>
-                                <p class="small mb-0">Integrate with ease</p>
+                        <div class="col-lg-6">
+                            <div class="hero-image-placeholder">
+                                <!-- Replace with actual India map security illustration -->
+                                <img src="/images/whychoose/entgrade.png" alt="Enterprise-Grade Without Enterprise Complexity" style="max-width: 80%; height: auto;" onerror="this.parentElement.innerHTML='<div style=\'font-size: 64px;\'>🔒</div><div>Represents secure access and identity protection.</div>'" />
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="text-center">
-                <p class="h4 mb-4">Scale with trust. Build with speed. Deploy with peace of mind.</p>
-                <div class="d-flex justify-content-center gap-3">
-                    <a href="/demo" class="btn btn-primary btn-lg">Request Demo</a>
-                    <a href="/docs" class="btn btn-outline-primary btn-lg">View Documentation</a>
-                </div>
-            </div>
+            </section>
         </div>
     </div>
 </div>

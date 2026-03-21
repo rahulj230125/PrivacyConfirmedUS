@@ -1,120 +1,206 @@
-@{
+﻿@{
     ViewData["Title"] = "How Its Helps | PrivacyConfirmed";
 }
 
-<div class="hero-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 mx-auto text-center">
-                <h1>How Its Helps</h1>
-                <p class="lead mb-4">How Its Helps</p>
-            </div>
+<!-- Submenu Navigation (above pill navigation, embossed pill shape bar) -->
+<div class="container" style="padding-top: 5rem;">
+    <div class="d-flex justify-content-center">
+        <div style="background: #e9ecef; box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1.5px 4px rgba(0,0,0,0.08); border-radius: 3rem; padding: 0.5rem 1.5rem; display: inline-block;">
+            <ul class="nav nav-pills justify-content-center" style="gap: 0.5rem;">
+                <li class="nav-item">
+                    <a class="round_sub_nav_button_in_active rounded-pill" asp-controller="Home" asp-action="CoreFeatures">Core Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="round_sub_nav_button_in_active rounded-pill" asp-controller="Home" asp-action="ComparisonMatrix">Comparison Matrix</a>
+                </li>
+                <li class="nav-item">
+                    <a class="round_sub_nav_button_in_active rounded-pill" asp-controller="Home" asp-action="WhyChoose">Why Us</a>
+                </li>
+                <!--li class="nav-item">
+                    <a class="round_sub_nav_button_in_active rounded-pill" asp-controller="Home" asp-action="LegalAndCompliance">Legal & Compliance</a>
+                </li-->
+                <li class="nav-item">
+                    <a class="round_sub_nav_button_active card active rounded-pill" asp-controller="Home" asp-action="HowItHelps">How It Helps</a>
+                </li>
+                <li class="nav-item">
+                    <a class="round_sub_nav_button_in_active rounded-pill" asp-controller="Home" asp-action="Pricing">Pricing</a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
-
-<div class="container py-5">
+<div class="container py-2">
     <div class="row">
-        <div class="col-lg-3">
-            <nav class="nav flex-column sticky-top pt-4" style="top: 2rem;">
-                <a class="nav-link" href="#Developers">Developers</a>
-                <a class="nav-link" href="#Security-Compliance">Security & Compliance</a>
-                <a class="nav-link" href="#Product-UX-Teams">Product/UX Teams</a>
-            </nav>
-        </div>
-        
-        <div class="col-lg-9">
-            <section id="Developers" class="mb-5">
-                
-                <div class="card mb-4 fade-in">
-                    <div class="card-header bg-primary text-white">
-                        <h3 class="h5 mb-0">Developers</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-4">
-                            <strong class="d-block mb-2">Outcome:Faster integration and development</strong>
-                            <p>
-                                With PrivacyConfirmed IAM, developers can integrate authentication and authorization systems quickly and securely. Our SDKs and detailed documentation reduce the complexity of OAuth2 and OIDC, ensuring that developers spend less time on security concerns and more time on building features.
-                            </p>
-                            <ul>
-                                <li>Access to pre-built integrations for popular platforms (e.g., social login, SSO).</li>
-                                <li>Seamless support for OAuth flows, enabling fast app scaling.</li>
-                                <li>Clear API documentation and example code snippets to speed up integration.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="Security-Compliance" class="mb-5">
-                <div class="card mb-4 fade-in">
-                    <div class="card-header bg-primary text-white">
-                        <h3 class="h5 mb-0">Security & Compliance</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-4">
-                            <strong class="d-block mb-2">Outcome:Regulatory compliance made easy</strong>
-                            <p>
-                                Security architects and compliance officers benefit from PrivacyConfirmed IAM's robust security features and standards compliance (e.g., ISO, SOC). With fine-grained access control (RBAC), MFA, and audit logs, ensuring compliance with local data residency and global regulations is simple and straightforward.
-                            </p>
-                            <ul>
-                                <li>Secure role-based access control to protect sensitive data.</li>
-                                <li>Real-time audit trails for detailed reporting and compliance.</li>
-                                <li>India-based data residency and local support to meet regulatory standards.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="Product-UX-Teams" class="mb-5">
-                <div class="card mb-4 fade-in">
-                    <div class="card-header bg-primary text-white">
-                        <h3 class="h5 mb-0">Product/UX Teams</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-4">
-                            <strong class="d-block mb-2">Outcome:Improved user experience</strong>
-                            <p>
-                                For product managers and UX designers, PrivacyConfirmed IAM offers SSO and social login to simplify the user journey, reducing friction and increasing conversion rates. The admin console and observability tools give teams the power to fine-tune user access and make data-driven decisions, improving overall product usability.
-                            </p>
-                            <ul>
-                                <li>Seamless authentication for a better user experience with SSO and MFA.</li>
-                                <li>Simple role management for different user types, ensuring ease of use.</li>
-                                <li>Clear visibility into authentication events and user behavior to optimize the experience.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="security" class="mb-5">
-                <h2 class="mb-4">Security Best Practices</h2>
-                <div class="card fade-in">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6 mb-4">
-                                <h4>Token Security</h4>
-                                <ul class="list-unstyled">
-                                    <li>? Use short-lived access tokens</li>
-                                    <li>? Implement token rotation</li>
-                                    <li>? Store tokens securely</li>
-                                    <li>? Never expose tokens in URLs</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6 mb-4">
-                                <h4>Application Security</h4>
-                                <ul class="list-unstyled">
-                                    <li>? Implement PKCE for mobile/SPA</li>
-                                    <li>? Use secure session management</li>
-                                    <li>? Enable MFA for sensitive operations</li>
-                                    <li>? Regular security audits</li>
-                                </ul>
+        <div class="col-lg-12">
+            <section id="Developers" class="mb-5 section-tab" style="padding-top: 3rem;">
+                <div class="card mb-4">
+                    <div class="card-body row align-items-center flex-row-reverse">
+                        <div class="col-lg-6">
+                            <div class="hero-image-placeholder">
+                                <!-- Replace with actual India map security illustration -->
+                                <img src="/images/howithelps/developers.png" alt="For Developers" style="max-width: 80%; height: auto;" onerror="this.parentElement.innerHTML='<div style=\'font-size: 64px;\'>🔒</div><div>Represents secure access and identity protection.</div>'" />
                             </div>
                         </div>
+                        <div class="col-lg-6">
+                            <strong class="d-block mb-2">For Developers</strong>
+                            <strong>Outcome: Ship Faster, Secure by Default</strong>
+                            <p>Modern applications require secure authentication and authorization from day one. PrivacyConfirmed eliminates the need to build and maintain custom identity logic, allowing developers to focus on product innovation instead of security plumbing.</p>
+                            <p>With clean APIs, OAuth 2.0 & OIDC-native architecture, and production-ready SDKs, you can:</p>
+                            <ul>
+                                <li>Integrate secure login flows in hours, not weeks</li>
+                                <li>Implement Authorization Code + PKCE correctly the first time</li>
+                                <li>Protect APIs with scope-based token validation</li>
+                                <li>Automate token lifecycle management (issuance, rotation, validation)</li>
+                                <li>Avoid security misconfigurations with secure-by-default settings</li>
+                            </ul>
+                            <p>PrivacyConfirmed reduces engineering overhead while increasing security confidence.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="Security-Compliance" class="mb-5 section-tab">
+                <div class="card mb-4">
+                    <div class="card-body row align-items-center flex-row-reverse">
+                        <div class="col-lg-6">
+                            <strong class="d-block mb-2">For Security & Compliance Teams</strong>
+                            <strong>Outcome: Centralized Governance, Measurable Control</strong>
+                            <p>Security teams need visibility, consistency, and enforceable policy control across distributed systems. PrivacyConfirmed centralizes identity decision-making through a unified policy engine.</p>
+                            <p>You gain:</p>
+
+                            <ul>
+                                <li>Centralized role-based access control (RBAC)</li>
+                                <li>Context-aware policy enforcement</li>
+                                <li>Structured audit logs for compliance reporting</li>
+                                <li>Automated key rotation and JWKS management</li>
+                                <li>Real-time monitoring of authentication and authorization events</li>
+
+                            </ul>
+                            <p>Every access decision is logged, traceable, and enforceable — enabling compliance readiness without operational complexity.</p>
+
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="hero-image-placeholder">
+                                <!-- Replace with actual India map security illustration -->
+                                <img src="/images/howithelps/secandcompliance.png" alt="For Security & Compliance Teams" style="max-width: 80%; height: auto;" onerror="this.parentElement.innerHTML='<div style=\'font-size: 64px;\'>🔒</div><div>Represents secure access and identity protection.</div>'" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="Product-UX-Teams" class="mb-5 section-tab">
+                <div class="card mb-4">
+                    <div class="card-body row align-items-center flex-row-reverse">
+                        <div class="col-lg-6">
+                            <div class="hero-image-placeholder">
+                                <!-- Replace with actual India map security illustration -->
+                                <img src="/images/howithelps/productux.png" alt="For Product & UX Teams" style="max-width: 80%; height: auto;" onerror="this.parentElement.innerHTML='<div style=\'font-size: 64px;\'>🔒</div><div>Represents secure access and identity protection.</div>'" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <strong class="d-block mb-2">For Product & UX Teams</strong>
+                            <strong>Outcome: Seamless User Experience with Strong Security</strong>
+                            <p>Authentication should be secure — but invisible.</p>
+                            <p>PrivacyConfirmed enables:</p>
+
+                            <ul>
+                                <li>Single Sign-On (SSO) across applications</li>
+                                <li>Adaptive Multi-Factor Authentication (MFA) only when risk increases</li>
+                                <li>Social and external identity provider integration</li>
+                                <li>Flexible role modeling for different user segments</li>
+
+                            </ul>
+                            <p>This means reduced login friction, improved onboarding conversion, and secure user journeys that don’t compromise experience.</p>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="SAAS" class="mb-5 section-tab">
+                <div class="card mb-4 fade-in">
+                    <div class="card-body row align-items-center flex-row-reverse">
+                        <div class="col-lg-6">
+                            <strong class="d-block mb-2">For Platform & SaaS Architects</strong>
+                            <strong>Outcome: Scalable Identity Infrastructure</strong>
+                            <p>As systems scale, identity becomes infrastructure.</p>
+                            <p>PrivacyConfirmed supports:</p>
+
+                            <ul>
+                                <li>Multi-tenant SaaS environments</li>
+                                <li>Microservices and API-first architectures</li>
+                                <li>Token-level permission modeling</li>
+                                <li>Centralized policy evaluation across services</li>
+                                <li>Cloud-native deployments</li>
+
+                            </ul>
+                            <p>Instead of patching identity across services, you deploy a unified identity control plane that scales with your architecture.</p>
+
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="hero-image-placeholder">
+                                <!-- Replace with actual India map security illustration -->
+                                <img src="/images/howithelps/saasarchitect.png" alt="For Platform & SaaS Architects" style="max-width: 80%; height: auto;" onerror="this.parentElement.innerHTML='<div style=\'font-size: 64px;\'>🔒</div><div>Represents secure access and identity protection.</div>'" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="BL" class="mb-5 section-tab">
+                <div class="card mb-4 fade-in">
+                    <div class="card-body row align-items-center flex-row-reverse">
+                        <div class="col-lg-6">
+                            <div class="hero-image-placeholder">
+                                <!-- Replace with actual India map security illustration -->
+                                <img src="/images/howithelps/businessldr.png" alt="For Business Leaders" style="max-width: 80%; height: auto;" onerror="this.parentElement.innerHTML='<div style=\'font-size: 64px;\'>🔒</div><div>Represents secure access and identity protection.</div>'" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <strong class="d-block mb-2">For Business Leaders</strong>
+                            <strong>Outcome: Risk Reduction + Faster Growth</strong>
+                            <p>Identity failures can cause data breaches, compliance violations, and reputational damage. PrivacyConfirmed reduces that risk while accelerating product delivery.</p>
+
+
+                            <ul>
+                                <li>Lower security implementation costs</li>
+                                <li>Faster time-to-market</li>
+                                <li>Reduced compliance overhead</li>
+                                <li>Stronger enterprise security posture</li>
+                                <p>Security becomes a growth enabler — not a bottleneck.</p>
+
+
+                            </ul>
+                           
+
+                        </div>
+                        
                     </div>
                 </div>
             </section>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const pills = document.querySelectorAll('#sectionPills .round_sub_nav_button_in_active');
+            const sections = document.querySelectorAll('.section-tab');
+
+            pills.forEach(pill => {
+                pill.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    // Remove active from all pills
+                    pills.forEach(p => p.classList.remove('active'));
+                    // Hide all sections
+                    sections.forEach(s => s.style.display = 'none');
+                    // Activate clicked pill
+                    this.classList.add('active');
+                    // Show corresponding section
+                    const sectionId = this.getAttribute('data-section');
+                    document.getElementById(sectionId).style.display = '';
+                });
+            });
+        });
+    </script>
+}

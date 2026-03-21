@@ -2,12 +2,46 @@
     ViewData["Title"] = "Pricing & Feature Comparison | PrivacyConfirmed";
 }
 
-<div class="container py-5">
+<!-- Platform Pills Navigation -->
+<div class="container" style="padding-top: 5rem;">
+    <div class="d-flex justify-content-center">
+        <div style="background: #fff; box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1.5px 4px rgba(0,0,0,0.08); border-radius: 3rem; padding: 0.5rem 1.5rem; display: inline-block;">
+            <ul class="nav nav-pills" style="gap: 0.5rem;">
+                <li class="nav-item">
+                    <a class="round_sub_nav_button_in_active rounded-pill" asp-controller="Home" asp-action="CoreFeatures">
+                        Core Features
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="round_sub_nav_button_in_active rounded-pill" asp-controller="Home" asp-action="ComparisonMatrix">
+                        Comparison Matrix
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="round_sub_nav_button_in_active rounded-pill" asp-controller="Home" asp-action="WhyChoose">Why Us</a>
+                </li>
+                <!--li class="nav-item">
+                    <a class="round_sub_nav_button_in_active rounded-pill" asp-controller="Home" asp-action="LegalAndCompliance">
+                        Legal & Compliance
+                    </a>
+                </li-->
+                <li class="nav-item">
+                    <a class="round_sub_nav_button_in_active rounded-pill" asp-controller="Home" asp-action="HowItHelps">How It Helps</a>
+                </li>
+                <li class="nav-item">
+                    <a class="round_sub_nav_button_active card active rounded-pill" asp-controller="Home" asp-action="Pricing">Pricing</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container py-3">
     <h1 class="text-center mb-5">Feature Comparison</h1>
 
     <div class="table-responsive">
-        <table class="table table-bordered">
-            <thead>
+        <table class="table table-bordered table-hover align-middle shadow-sm" style="background: #fff; border-radius: 1rem; overflow: hidden;">
+            <thead class ="table-comp_matrix">
                 <tr>
                     <th>Features</th>
                     <th>PrivacyConfirmed</th>
@@ -86,7 +120,7 @@
                             <li>? Basic Support</li>
                             <li>? Community Forum Access</li>
                         </ul>
-                        <a href="/signup" class="btn btn-primary d-block">Start Free Trial</a>
+                        <a href="@Url.Action("ContactUs", "Home")" class="btn btn-primary d-block">Start Free Trial</a>
                     </div>
                 </div>
             </div>
@@ -103,7 +137,7 @@
                             <li>? Priority Support</li>
                             <li>? Advanced Security Features</li>
                         </ul>
-                        <a href="/contact" class="btn btn-primary d-block">Contact Sales</a>
+                        <a href="@Url.Action("ContactUs", "Home")" class="btn btn-primary d-block">Contact Sales</a>
                     </div>
                 </div>
             </div>
@@ -120,7 +154,7 @@
                             <li>? 24/7 Premium Support</li>
                             <li>? Custom Integration Support</li>
                         </ul>
-                        <a href="/enterprise" class="btn btn-primary d-block">Request Quote</a>
+                        <a href="@Url.Action("ContactUs", "Home")" class="btn btn-primary d-block">Request Quote</a>
                     </div>
                 </div>
             </div>

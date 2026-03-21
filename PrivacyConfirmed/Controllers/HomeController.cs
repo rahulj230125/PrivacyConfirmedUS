@@ -77,8 +77,13 @@ namespace PrivacyConfirmed.Controllers
             return View();
         }
 
+        public IActionResult About()
+        {
+            return View();
+        }
+
         #region Contact Us Actions
-        
+
         /// <summary>
         /// GET: Display the Contact Us form
         /// </summary>

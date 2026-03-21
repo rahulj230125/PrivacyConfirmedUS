@@ -2,36 +2,33 @@
     ViewData["Title"] = "Technical Documentation - OAuth Flows & Best Practices | PrivacyConfirmed";
 }
 
-<div class="hero-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 mx-auto text-center">
-                <h1>Implementation Guide & OAuth Flows</h1>
-                <p class="lead mb-4">Comprehensive documentation and best practices for secure authentication</p>
-            </div>
-        </div>
+<!-- Submenu Navigation (above pill navigation) -->
+<div class="container" style="padding-top: 3rem; padding-bottom: 2.5rem;">
+    <div class="d-flex justify-content-center">
+    <div style="background: #fff; box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1.5px 4px rgba(0,0,0,0.08); border-radius: 3rem; padding: 0.5rem 1.5rem; display: inline-block;">
+    <ul class="nav nav-pills justify-content-center" style="gap: 0.5rem;">
+        <li class="nav-item">
+            <a class="round_sub_nav_button_active card active rounded-pill" asp-controller="Technical" asp-action="Technical">Documentation</a>
+        </li>
+        <li class="nav-item">
+            <a class="round_sub_nav_button_in_active rounded-pill" asp-controller="ResourceCenter" asp-action="Index">Resource Center</a>
+        </li>
+        <li class="nav-item">
+            <a class="round_sub_nav_button_in_active rounded-pill" asp-controller="Home" asp-action="FAQ">FAQ</a>
+        </li>
+    </ul>
+    </div>
     </div>
 </div>
 
-<div class="container py-5">
+<div class="container" style="padding-bottom: 2.5rem;">
     <div class="row">
-        <div class="col-lg-3">
-            <nav class="nav flex-column sticky-top pt-4" style="top: 2rem;">
-                <a class="nav-link" href="#auth-flows">Authentication Flows</a>
-                <a class="nav-link" href="#implementation-blueprint">Implementation Blueprint</a>
-                <a class="nav-link" href="#implementation-checklist">Implementation Checklist</a>
-            </nav>
-        </div>
-        <div class="col-lg-9">
-            <section id="auth-flows" class="mb-5">
-                <h2 class="mb-4">Recommended Authentication Flows</h2>
-                
-                <div class="card mb-4 fade-in">
-                    <div class="card-header bg-primary text-white">
-                        <h3 class="h5 mb-0">Authorization Code Flow with PKCE</h3>
-                    </div>
+        <div class="col-lg-12">
+            <section id="auth-flows" class="mb-5 section-tab">
+                <div class="card mb-4">
                     <div class="card-body">
                         <div class="mb-4">
+                            <h2 class="section-title">Authorization Code Flow with PKCE</h2>
                             <strong class="d-block mb-2">Recommended for:</strong>
                             <p>Web apps and mobile apps (SPAs) that require secure user authentication.</p>
 
@@ -68,11 +65,9 @@
                 </div>
 
                 <div class="card mb-4 fade-in">
-                    <div class="card-header bg-primary text-white">
-                        <h3 class="h5 mb-0">Client Credentials Flow</h3>
-                    </div>
                     <div class="card-body">
                         <div class="mb-4">
+                            <h2 class="section-title">Client Credentials Flow</h2>
                             <strong class="d-block mb-2">Recommended for:</strong>
                             <p>Backend-to-backend authentication, where apps authenticate on behalf of themselves (no user interaction).</p>
 
@@ -108,11 +103,9 @@
                 </div>
 
                 <div class="card mb-4 fade-in">
-                    <div class="card-header bg-primary text-white">
-                        <h3 class="h5 mb-0">Device Authorization Flow</h3>
-                    </div>
                     <div class="card-body">
                         <div class="mb-4">
+                            <h2 class="section-title">Device Authorization Flow</h2>
                             <strong class="d-block mb-2">Recommended for:</strong>
                             <p>Devices without a browser or input interface (e.g., smart TVs, IoT devices).</p>
 
@@ -146,11 +139,9 @@
                 </div>
 
                 <div class="card mb-4 fade-in">
-                    <div class="card-header bg-primary text-white">
-                        <h3 class="h5 mb-0">Refresh Token Rotation</h3>
-                    </div>
                     <div class="card-body">
                         <div class="mb-4">
+                            <h2 class="section-title">Refresh Token Rotation</h2>
                             <strong class="d-block mb-2">Recommended for:</strong>
                             <p>Ensures long-term access without needing to re-authenticate the user, particularly useful in single-page apps (SPAs).</p>
 
@@ -185,11 +176,11 @@
                     </div>
                 </div>
             </section>
-            <section id="implementation-blueprint" class="mb-5">
-                <h2 class="mb-4">Implementation Blueprint</h2>
-                <div class="card fade-in">
+            <section id="implementation-blueprint" class="mb-5 section-tab">
+                <div class="card">
                     <div class="card-body">
                         <div class="d-block mb-2">
+                            <h2 class="section-title">Implementation Blueprint</h2>
                             <div class="d-flex align-items-center mb-3">
                                 <div class="feature-icon me-3">
                                     <i class="bi bi-shield-check"></i>
@@ -231,11 +222,11 @@
                     </div>
                 </div>
             </section>
-            <section id="implementation-checklist" class="mb-5">
-                <h2 class="mb-4">Implementation Checklist:</h2>
+            <section id="implementation-checklist" class="mb-5 section-tab">
                 <div class="d-block mb-2">
                         <div class="card fade-in">
                             <div class="card-body">
+                            <h2 class="section-title">Implementation Checklist</h2>
                             <ul class="list-group-horizontal">
                                     <li>Set up account and configure OAuth settings</li>
                                     <li>Integrate SDKs and configure authentication flows</li>
@@ -249,11 +240,10 @@
                         </div>
                      </div>
             </section>
-            <!--Below section is irrelevant and can be removed but when I remove the section above this disappear-->
-            <section id="security" class="mb-5">
-                <h2 class="mb-4">Security Best Practices</h2>
+            <section id="security" class="mb-5 section-tab">
                 <div class="card fade-in">
                     <div class="card-body">
+                        <h2 class="section-title">Security Best Practices</h2>
                         <div class="row">
                             <div class="col-md-6 mb-4">
                                 <h4>Token Security</h4>
@@ -280,3 +270,27 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const pills = document.querySelectorAll('#sectionPills .round_sub_nav_button_in_active');
+            const sections = document.querySelectorAll('.section-tab');
+
+            pills.forEach(pill => {
+                pill.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    // Remove active from all pills
+                    pills.forEach(p => p.classList.remove('active'));
+                    // Hide all sections
+                    sections.forEach(s => s.style.display = 'none');
+                    // Activate clicked pill
+                    this.classList.add('active');
+                    // Show corresponding section
+                    const sectionId = this.getAttribute('data-section');
+                    document.getElementById(sectionId).style.display = '';
+                });
+            });
+        });
+    </script>
+}

@@ -1,57 +1,115 @@
-@{
+﻿@{
     ViewData["Title"] = "Core Features | PrivacyConfirmed";
 }
 
-<div class="hero-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 mx-auto text-center">
-                <h1>Core Features</h1>
-                <p class="lead mb-4">Core Features</p>
-            </div>
+<!-- Submenu Navigation (above pill navigation, embossed pill shape bar) -->
+<div class="container" style="padding-top: 5rem;">
+    <div class="d-flex justify-content-center">
+        <div style="background: #fff; box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1.5px 4px rgba(0,0,0,0.08); border-radius: 3rem; padding: 0.5rem 1.5rem; display: inline-block;">
+            <ul class="nav nav-pills justify-content-center" style="gap: 0.5rem;">
+                <li class="nav-item">
+                    <a class="round_sub_nav_button_active card active rounded-pill" asp-controller="Home" asp-action="CoreFeatures">Core Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="round_sub_nav_button_in_active rounded-pill" asp-controller="Home" asp-action="ComparisonMatrix">Comparison Matrix</a>
+                </li>
+                <li class="nav-item">
+                    <a class="round_sub_nav_button_in_active rounded-pill" asp-controller="Home" asp-action="WhyChoose">Why Us</a>
+                </li>
+                <!--li class="nav-item">
+                    <a class="nav-link rounded-pill" asp-controller="Home" asp-action="LegalAndCompliance">Legal & Compliance</a>
+                </li-->
+                <li class="nav-item">
+                    <a class="round_sub_nav_button_in_active rounded-pill" asp-controller="Home" asp-action="HowItHelps">How It Helps</a>
+                </li>
+                <li class="nav-item">
+                    <a class="round_sub_nav_button_in_active rounded-pill" asp-controller="Home" asp-action="Pricing">Pricing</a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
 
-<div class="container py-5">
+<!-- Platform Pills Navigation (section navigation as tabs) -->
+<!--div class="container" style="padding-top: 2.5rem; padding-bottom: 2.5rem;">
+    <div class="d-flex justify-content-center">
+        <div style="background: #fff; box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1.5px 4px rgba(0,0,0,0.08); border-radius: 3rem; padding: 0.5rem 1.5rem; display: inline-block;">
+            <ul class="nav nav-pills" id="sectionPills" style="gap: 0.5rem;">
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill active" href="#" data-section="auth-flows" id="pill-auth-flows">
+                        Authentication & SSO
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill" href="#" data-section="social-login" id="pill-social-login">
+                        Social Login
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill" href="#" data-section="authorization-token-mgmt" id="pill-authorization-token-mgmt">
+                        Authorization & Token Management
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill" href="#" data-section="RBAC-Policies" id="pill-RBAC-Policies">
+                        RBAC & Policies
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill" href="#" data-section="mfa-risk-management" id="pill-mfa-risk-management">
+                        MFA & Risk Management
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill" href="#" data-section="admin-console" id="pill-admin-console">
+                        Admin Console
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill" href="#" data-section="observability" id="pill-observability">
+                        Observability
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill" href="#" data-section="security" id="pill-security">
+                        Security Best Practices
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div-->
+
+<div class="container" style="padding-top: 2.5rem; padding-bottom: 2.5rem;">
     <div class="row">
-        <div class="col-lg-3">
-            <nav class="nav flex-column sticky-top pt-4" style="top: 2rem;">
-                <a class="nav-link" href="#auth-flows">Recommended Authentication Flows</a>
-                <a class="nav-link" href="#social-login">Social Login</a>
-                <a class="nav-link" href="#authorization-token-mgmt">Authorization & Token Management</a>
-                <a class="nav-link" href="#RBAC-Policies">RBAC & Policies</a>
-                <a class="nav-link" href="#mfa-risk-management">MFA & Risk Management</a>
-                <a class="nav-link" href="#admin-console">Admin Console</a>
-                <a class="nav-link" href="#observability">Observability</a>
-            </nav>
-        </div>
-        
-        <div class="col-lg-9">
-            <section id="auth-flows" class="mb-5">
-                <h2 class="mb-4">Recommended Authentication Flows</h2>
-                
+        <div class="col-lg-12">
+            <section id="auth-flows" class="mb-5 section-tab">
                 <div class="card mb-4 fade-in">
-                    <div class="card-header bg-primary text-white">
-                        <h3 class="h5 mb-0">Authentication & SSO</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-4">
-                            <strong class="d-block mb-2">Best for:</strong>
+                    <div class="card-body row align-items-center flex-row-reverse">
+                        <div class="col-lg-6">
+                            <div class="hero-image-placeholder">
+                                <!-- Replace with actual India map security illustration -->
+                                <img src="/images/CoreFeatures/CoreFeatureImg.png" alt="Represents secure access and identity protection." style="max-width: 80%; height: auto;" onerror="this.parentElement.innerHTML='<div style=\'font-size: 64px;\'>🔒</div><div>Represents secure access and identity protection.</div>'" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <strong class="d-block mb-2">Authentication & Single Sign-On (SSO)</strong>
                             <p>
-                                Provide seamless, secure access across multiple applications with Single Sign-On (SSO). Simplify user management while maintaining high security with OIDC and OAuth2 standards.
+                                Deliver seamless, secure access across all applications with standards-based authentication powered by OAuth2 and OpenID Connect (OIDC). PrivacyConfirmed centralizes identity while preserving strong security controls across your ecosystem.
                             </p>
+                            <strong class="d-block mb-2">Key Capabilities</strong>
                             <ul>
-                                <li>Streamlined user experience with one-click login across apps.</li>
-                                <li>Reduced administrative overhead with centralized user management.</li>
-                                <li>Enhanced security with risk-based authentication and multi-factor authentication (MFA).</li>
+                                <li>One-click Single Sign-On across web, mobile, and APIs</li>
+                                <li>Centralized identity management across tenants and applications</li>
+                                <li>Support for OIDC, OAuth2, and modern identity federation</li>
+                                <li>Adaptive authentication and session management</li>
                             </ul>
                             <strong class="d-block mb-2">Business Benefits</strong>
                             <p class="mb-0">
                                 <ul>
-                                    <li>Increase user productivity by reducing login friction.</li>
-                                    <li>Simplify security management for large organizations.</li>
-                                    <li>Meet compliance needs with secure authentication.</li>
+                                    <li>Increase productivity by eliminating repeated logins</li>
+                                    <li>Reduce IT overhead with centralized identity governance</li>
+                                    <li>Strengthen compliance with secure, auditable authentication</li>
                                 </ul>
                             </p>
                         </div>
@@ -59,28 +117,67 @@
                 </div>
             </section>
 
-            <section id="social-login" class="mb-5">
+            <section id="social-login" class="mb-5 section-tab">
                 <div class="card mb-4 fade-in">
-                    <div class="card-header bg-primary text-white">
-                        <h3 class="h5 mb-0">Social Login</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-4">
-                            <strong class="d-block mb-2">Best for:</strong>
+                    <div class="card-body row align-items-center flex-row-reverse">
+                        <div class="col-lg-6">
+                            <strong class="d-block mb-2">Social Login</strong>
                             <p>
-                                Enable your users to authenticate with their preferred social platforms like Google, Facebook, and LinkedIn, improving user engagement and reducing sign-up barriers.
+                                Allow users to authenticate using trusted identity providers such as Google, Microsoft, LinkedIn, or enterprise IdPs. Reduce onboarding friction while maintaining full control over token issuance and policy enforcement.
                             </p>
+                            <strong class="d-block mb-2">Key Capabilities</strong>
                             <ul>
-                                <li>Easy user onboarding with popular social logins.</li>
-                                <li>Reduced friction and increased conversion rates.</li>
-                                <li>Supports multiple providers for wider reach.</li>
+                                <li>Built-in support for social login providers</li>
+                                <li>Enterprise federation (OIDC / SAML bridging)</li>
+                                <li>Controlled token issuance after third-party authentication</li>
+                                <li>Tenant-specific identity provider configuration</li>
                             </ul>
                             <strong class="d-block mb-2">Business Benefits</strong>
                             <p class="mb-0">
                                 <ul>
-                                    <li>Accelerate user adoption with familiar login methods.</li>
-                                    <li>Decrease user drop-off during sign-up.</li>
-                                    <li>Enhance app usability with seamless social integrations.</li>
+                                    <li>Accelerate user onboarding and adoption</li>
+                                    <li>Reduce sign-up abandonment</li>
+                                    <li>Enable flexible Bring-Your-Own-Identity (BYO-IDP) models</li>
+                                </ul>
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="hero-image-placeholder">
+                                <!-- Replace with actual India map security illustration -->
+                                <img src="/images/CoreFeatures/SocialLoginImg.png" alt="Represents secure access and identity protection." style="max-width: 80%; height: auto;" onerror="this.parentElement.innerHTML='<div style=\'font-size: 64px;\'>🔒</div><div>Represents secure access and identity protection.</div>'" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="authorization-token-mgmt" class="mb-5 section-tab">
+                <div class="card mb-4 fade-in">
+                    <div class="card-body row align-items-center flex-row-reverse">
+                        <div class="col-lg-6">
+                            <div class="hero-image-placeholder">
+                                <!-- Replace with actual India map security illustration -->
+                                <img src="/images/CoreFeatures/AuthorizationTokenMgmtImg.png" alt="Represents secure access and identity protection." style="max-width: 80%; height: auto;" onerror="this.parentElement.innerHTML='<div style=\'font-size: 64px;\'>🔒</div><div>Represents secure access and identity protection.</div>'" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <strong class="d-block mb-2">Authorization & Token Management</strong>
+                            <p>
+                                Enforce fine-grained access control across APIs and applications using centralized authorization policies and secure token issuance.
+                            </p>
+                            <strong class="d-block mb-2">Key Capabilities</strong>
+                            <ul>
+                                <li>Role-Based Access Control (RBAC) and policy-based authorization</li>
+                                <li>Secure JWT access and ID tokens</li>
+                                <li>Token lifecycle management (expiration, rotation, revocation)</li>
+                                <li>Scoped access control per application and OAuth client</li>
+                            </ul>
+                            <strong class="d-block mb-2">Business Benefits</strong>
+                            <p class="mb-0">
+                                <ul>
+                                    <li>Protect sensitive systems with controlled API access</li>
+                                    <li>Simplify security across distributed architectures</li>
+                                    <li>Meet regulatory requirements with centralized authorization policies</li>
                                 </ul>
                             </p>
                         </div>
@@ -88,115 +185,104 @@
                 </div>
             </section>
 
-            <section id="authorization-token-mgmt" class="mb-5">
-                <div class="card mb-4 fade-in">
-                    <div class="card-header bg-primary text-white">
-                        <h3 class="h5 mb-0">Authorization & Token Management</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-4">
-                            <strong class="d-block mb-2">Best for:</strong>
-                            <p>
-                                Manage user permissions effectively using RBAC (Role-Based Access Control) and OAuth tokens to control and monitor access across systems.
-                            </p>
-                            <ul>
-                                <li>Fine-grained access control via roles and policies.</li>
-                                <li>Support for JWT tokens, ensuring secure data transfer.</li>
-                                <li>Automated token expiration and rotation for enhanced security.</li>
-                            </ul>
-                            <strong class="d-block mb-2">Business Benefits</strong>
-                            <p class="mb-0">
-                                <ul>
-                                    <li>Ensure secure, regulated access to sensitive data.</li>
-                                    <li>Maintain compliance with ease through automated policies.</li>
-                                    <li>Simplify authorization across complex app architectures.</li>
-                                </ul>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="RBAC-Policies" class="mb-5">
-                <div class="card mb-4 fade-in">
-                    <div class="card-header bg-primary text-white">
+            <section id="RBAC-Policies" class="mb-5 section-tab">
+                <div-- class="card mb-4 fade-in">
+                    <!--h2 class="section-title">RBAC & Policies</h2-->
+                    <!--div class="card-header bg-primary text-white">
                         <h3 class="h5 mb-0">RBAC & Policies</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-4">
-                            <strong class="d-block mb-2">Best for:</strong>
+                    </div-->
+                    <div class="card-body row align-items-center flex-row-reverse">
+                        
+                        <div class="col-lg-6">
+                            <strong class="d-block mb-2">RBAC & Policies</strong>
                             <p>
-                                Define and enforce granular access controls for users based on their roles, improving governance and reducing unauthorized access.
+                                Define and enforce granular access rules at the organization, application, OAuth client, or authorization server level. PrivacyConfirmed enables structured policy management across tenants.
                             </p>
+                            <strong class="d-block mb-2">Key Capabilities</strong>
                             <ul>
-                                <li>Create custom policies to match your security posture.</li>
-                                <li>Centralized control of user permissions and access levels.</li>
-                                <li>Integration with external systems for consistent role enforcement.</li>
+                                <li>Custom policy definitions aligned to your security posture</li>
+                                <li>Multi-level policy enforcement (Org, App, Client, Auth Server)</li>
+                                <li>Dynamic permission assignment</li>
+                                <li>Centralized role governance</li>
                             </ul>
                             <strong class="d-block mb-2">Business Benefits</strong>
                             <p class="mb-0">
                                 <ul>
-                                    <li>Reduce the risk of unauthorized access.</li>
-                                    <li>Improve operational security with tailored access rules.</li>
-                                    <li>Enhance auditability and compliance readiness.</li>
+                                    <li>Reduce unauthorized access risk</li>
+                                    <li>Improve governance and internal control</li>
+                                    <li>Achieve audit-ready policy enforcement</li>
                                 </ul>
                             </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="hero-image-placeholder">
+                                <!-- Replace with actual India map security illustration -->
+                                <img src="/images/CoreFeatures/RBACPoliciesImg.png" alt="Represents secure access and identity protection." style="max-width: 80%; height: auto;" onerror="this.parentElement.innerHTML='<div style=\'font-size: 64px;\'>🔒</div><div>Represents secure access and identity protection.</div>'" />
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="mfa-risk-management" class="mb-5">
+            <!--section id="mfa-risk-management" class="mb-5 section-tab" style="display:none;">
                 <div class="card mb-4 fade-in">
-                    <div class="card-header bg-primary text-white">
-                        <h3 class="h5 mb-0">MFA & Risk Management</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-4">
-                            <strong class="d-block mb-2">Best for:</strong>
+                    <div class="card-body row align-items-center flex-row-reverse">
+                        <div class="col-lg-6">
+                            <div class="hero-image-placeholder">
+                                <img src="/images/CoreFeatures/MFARiskMgmtImg.png" alt="Represents secure access and identity protection." style="max-width: 80%; height: auto;" onerror="this.parentElement.innerHTML='<div style=\'font-size: 64px;\'>🔒</div><div>Represents secure access and identity protection.</div>'" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
                             <p>
-                                Mitigate security risks by integrating Multi-Factor Authentication (MFA) and adaptive authentication, making sure only legitimate users gain access to sensitive applications.
+                                Protect high-value systems using adaptive authentication and risk-based access controls that adjust security dynamically based on context.
                             </p>
+                            <strong class="d-block mb-2">Key Capabilities</strong>
                             <ul>
-                                <li>Risk-based authentication adapts security checks based on user behavior.</li>
-                                <li>MFA support across mobile apps, email, and hardware tokens.</li>
-                                <li>Real-time risk assessment to prevent unauthorized access attempts.</li>
+                                <li>Support for TOTP, email OTP, and hardware token MFA</li>
+                                <li>Risk-based authentication triggers</li>
+                                <li>Context-aware session validation</li>
+                                <li>Real-time threat detection</li>
                             </ul>
                             <strong class="d-block mb-2">Business Benefits</strong>
                             <p class="mb-0">
                                 <ul>
-                                    <li>Enhance user security without adding friction.</li>
-                                    <li>Proactively detect and block suspicious activity.</li>
-                                    <li>Meet compliance regulations for sensitive data access.</li>
+                                    <li>Strengthen account security without unnecessary friction</li>
+                                    <li>Detect suspicious behavior early</li>
+                                    <li>Align with compliance standards for sensitive data environments</li>
                                 </ul>
                             </p>
                         </div>
                     </div>
                 </div>
-            </section>
+            </section-->
 
-            <section id="admin-console" class="mb-5">
+            <section id="admin-console" class="mb-5 section-tab">
                 <div class="card mb-4 fade-in">
-                    <div class="card-header bg-primary text-white">
-                        <h3 class="h5 mb-0">Admin Console</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-4">
-                            <strong class="d-block mb-2">Best for:</strong>
+                    <div class="card-body row align-items-center flex-row-reverse">
+                        <div class="col-lg-6">
+                            <div class="hero-image-placeholder">
+                                <!-- Replace with actual India map security illustration -->
+                                <img src="/images/CoreFeatures/AdminConsoleImg.png" alt="Represents secure access and identity protection." style="max-width: 80%; height: auto;" onerror="this.parentElement.innerHTML='<div style=\'font-size: 64px;\'>🔒</div><div>Represents secure access and identity protection.</div>'" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                        <strong class="d-block mb-2">Admin Console</strong>
                             <p>
-                                Manage users, roles, and security policies from a centralized Admin Console. Streamline access management and monitor system activity to ensure compliance and operational efficiency.
+                                Operate your identity ecosystem from a centralized, multi-tenant administrative console. Manage organizations, applications, OAuth clients, roles, and policies with full visibility.
                             </p>
+                            <strong class="d-block mb-2">Key Capabilities</strong>
                             <ul>
-                                <li>User management with powerful filters and search.</li>
-                                <li>Audit logs to track and analyze system access.</li>
-                                <li>Policy enforcement for consistent security standards across teams.</li>
+                                <li>Organization and tenant management</li>
+                                <li>OAuth client and application configuration</li>
+                                <li>Advanced user search and filtering</li>
+                                <li>Full audit logs and activity tracking</li>
                             </ul>
                             <strong class="d-block mb-2">Business Benefits</strong>
                             <p class="mb-0">
                                 <ul>
-                                    <li>Streamline administrative tasks and reduce overhead.</li>
-                                    <li>Maintain full visibility of system activities for compliance.</li>
-                                    <li>Centralized security policy management for faster updates.</li>
+                                    <li>Reduce operational complexity</li>
+                                    <li>Enable faster security policy updates</li>
+                                    <li>Maintain full administrative visibility</li>
                                 </ul>
                             </p>
                         </div>
@@ -204,55 +290,60 @@
                 </div>
             </section>
 
-            <section id="observability" class="mb-5">
-                <div class="card fade-in">
-                    <div class="card-header bg-primary text-white">
-                        <h3 class="h5 mb-0">Observability</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-4">
-                            <strong class="d-block mb-2">Best for:</strong>
+            <section id="observability" class="mb-5 section-tab">
+                <div class="card mb-4 fade-in">
+                    <div class="card-body row align-items-center flex-row-reverse">
+                        
+                        <div class="col-lg-6">
+                        <strong class="d-block mb-2">Observability</strong>
                             <p>
-                                Monitor and audit all access events across your platform with real-time observability. Utilize logs, alerts, and dashboards to keep track of authentication and authorization activities.
+                                Gain complete visibility into authentication and authorization activity across your environment. Monitor, audit, and respond in real time.  
                             </p>
+                            <strong class="d-block mb-2">Key Capabilities</strong>
                             <ul>
-                                <li>Deep insights with real-time monitoring of authentication events.</li>
-                                <li>Customizable alerts to flag suspicious activities.</li>
-                                <li>Easy integration with SIEM for advanced security analysis.</li>
+                                <li>Real-time authentication and authorization logging</li>
+                                <li>Centralized audit trails</li>
+                                <li>Configurable alerts and monitoring</li>
+                                <li>SIEM integration support</li>
                             </ul>
                             <strong class="d-block mb-2">Business Benefits</strong>
                             <p class="mb-0">
                                 <ul>
-                                    <li>Improve security posture with proactive alerts.</li>
-                                    <li>Enhance compliance readiness with detailed audit logs.</li>
-                                    <li>Quickly identify and mitigate potential threats across your environment.</li>
+                                    <li>Improve security posture through proactive monitoring</li>
+                                    <li>Enhance compliance with detailed audit reporting</li>
+                                    <li>Accelerate incident detection and response</li>
                                 </ul>
                             </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="hero-image-placeholder">
+                                <!-- Replace with actual India map security illustration -->
+                                <img src="/images/CoreFeatures/ObservabilityImg.png" alt="Represents secure access and identity protection." style="max-width: 80%; height: auto;" onerror="this.parentElement.innerHTML='<div style=\'font-size: 64px;\'>🔒</div><div>Represents secure access and identity protection.</div>'" />
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
-            <section id="security" class="mb-5">
-                <h2 class="mb-4">Security Best Practices</h2>
+            <section id="security" class="mb-5 section-tab">
                 <div class="card fade-in">
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6 mb-4">
-                                <h4>Token Security</h4>
-                                <ul class="list-unstyled">
-                                    <li>? Use short-lived access tokens</li>
-                                    <li>? Implement token rotation</li>
-                                    <li>? Store tokens securely</li>
-                                    <li>? Never expose tokens in URLs</li>
+                        <div class="features-row">
+                            <div class="feature-column">
+                                <h3>Token Security</h3>
+                                <ul class="feature-list">
+                                    <li>Use short-lived access tokens</li>
+                                    <li>Implement token rotation</li>
+                                    <li>Store tokens securely</li>
+                                    <li>Never expose tokens in URLs</li>
                                 </ul>
                             </div>
-                            <div class="col-md-6 mb-4">
-                                <h4>Application Security</h4>
-                                <ul class="list-unstyled">
-                                    <li>? Implement PKCE for mobile/SPA</li>
-                                    <li>? Use secure session management</li>
-                                    <li>? Enable MFA for sensitive operations</li>
-                                    <li>? Regular security audits</li>
+                            <div class="feature-column">
+                                <h3>Application Security</h3>
+                                <ul class="feature-list">
+                                    <li>Implement PKCE for mobile/SPA</li>
+                                    <li>Use secure session management</li>
+                                    <li>Enable MFA for sensitive operations</li>
+                                    <li>Regular security audits</li>
                                 </ul>
                             </div>
                         </div>
@@ -262,3 +353,27 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const pills = document.querySelectorAll('#sectionPills .nav-link');
+            const sections = document.querySelectorAll('.section-tab');
+
+            pills.forEach(pill => {
+                pill.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    // Remove active from all pills
+                    pills.forEach(p => p.classList.remove('active'));
+                    // Hide all sections
+                    sections.forEach(s => s.style.display = 'none');
+                    // Activate clicked pill
+                    this.classList.add('active');
+                    // Show corresponding section
+                    const sectionId = this.getAttribute('data-section');
+                    document.getElementById(sectionId).style.display = '';
+                });
+            });
+        });
+    </script>
+}

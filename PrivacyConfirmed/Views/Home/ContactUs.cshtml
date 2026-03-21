@@ -112,16 +112,21 @@
     }
 </style>
 
-<div class="contact-hero">
-    <div class="container">
-        <div class="text-center">
-            <i class="bi bi-envelope-fill" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-            <h1>Get in Touch</h1>
-            <p class="lead">Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+<!-- Submenu Navigation (above pill navigation) -->
+<div class="container" style="padding-top: 3.5rem; padding-bottom:2.5rem">
+    <div class="d-flex justify-content-center">
+        <div style="background: #fff; box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1.5px 4px rgba(0,0,0,0.08); border-radius: 3rem; padding: 0.5rem 1.5rem; display: inline-block;">
+            <ul class="nav nav-pills justify-content-center" style="gap: 0.5rem;">
+                <li class="nav-item">
+                    <a class="round_sub_nav_button_in_active rounded-pill" asp-controller="Home" asp-action="About">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="round_sub_nav_button_active card active rounded-pill" asp-controller="Home" asp-action="ContactUs">Contact Us</a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
-
 <div class="container contact-container">
     
     @* Display Error Messages *@
@@ -245,7 +250,7 @@
             </div>
             
             <div class="mt-4 text-center">
-                <button type="submit" class="btn btn-primary btn-submit">
+                <button type="submit" class="btn-primary">
                     <i class="bi bi-send-fill me-2"></i>
                     Submit Request
                 </button>

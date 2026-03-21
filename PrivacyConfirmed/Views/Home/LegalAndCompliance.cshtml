@@ -1,43 +1,120 @@
-@{
-    ViewData["Title"] = "Comparison Matrix | PrivacyConfirmed";
+{
+    ViewData["Title"] = "Legal & Compliance | PrivacyConfirmed";
 }
 
-<div class="container py-5">
-    <h1 class="text-center mb-5">Legal & Compliance</h1>
-    <div class="table-responsive mb-5">
-        <strong class="d-block mb-3">ISO/SOC Readiness</strong>
-        <p>PrivacyConfirmed IAM is ISO and SOC compliant, ensuring that your organization meets the highest global standards for security, confidentiality, and privacy. This includes:</p>
-        <ul class="list-group-horizontal">
-            <li>ISO 27001: Information Security Management System (ISMS) to safeguard your data.</li>
-            <li>SOC 2: Ensures that PrivacyConfirmed follows rigorous standards for security, availability, confidentiality, processing integrity, and privacy.</li>
-        </ul>
-        <p class="mb-xxl-5">These certifications provide a clear framework for managing sensitive information, giving your organization the confidence it needs to maintain compliance with industry regulations.</p>
-    </div>
-    <div class="table-responsive mb-5">
-        <strong class="d-block mb-3">Data Residency & Compliance with Indian Regulations</strong>
-        <p>PrivacyConfirmed supports <b>India-based data residency</b> to comply with the country’s data protection laws. This feature ensures that your <b>user data</b> is stored and processed within India’s borders, providing full compliance with the <b>Indian Data Protection Bill</b> (currently under review) and other regulatory frameworks that may arise.</p>
-        <p>Key Benefits:</p>
-        <ul class="list-group-horizontal">
-            <li><b>Local compliance:</b> Meeting the Indian data residency requirements for user data.</li>
-            <li><b>Data sovereignty:</b> Ensures data is stored within the country to meet regulatory needs.</li>
-        </ul>
-    </div>
-    <div class="table-responsive mb-5">
-        <strong class="d-block mb-3">Consent Management</strong>
-        <p>With <b>PrivacyConfirmed IAM</b>, you can easily manage <b>user consent</b> for data processing and ensure transparency in how their data is used. Our <b>Consent Management</b> features allow you to:</p>
-        <ul class="list-group-horizontal">
-            <li>Gather user consent during the authentication process</li>
-            <li>Provide users with clear options to <b>opt-in</b> or <b>opt-out</b> for specific data usage</li>
-            <li>Track consent across applications and ensure compliance with regulations like <b>GDPR</b></li>
-        </ul>
-    </div>
-    <div class="table-responsive mb-5">
-        <strong class="d-block mb-3">Audit Trails</strong>
-        <p>Our <b>Audit Trails</b> feature provides <b>complete transparency</b> over user access and authentication activities. All actions, from user logins to role changes, are tracked and logged in real-time. This makes it easy to:</p>
-        <ul class="list-group-horizontal">
-            <li><b>Monitor access:</b> Keep a record of who accessed what and when</li>
-            <li><b>Generate reports:</b> Use the audit logs for compliance audits and security assessments</li>
-            <li><b>Identify vulnerabilities:</b> Quickly detect unauthorized access attempts and anomalies</li>
-        </ul>
+<!-- Platform Pills Navigation -->
+<div class="container" style="padding-top: 3.0rem;">
+    <div class="d-flex justify-content-center">
+        <div style="background: #fff; box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1.5px 4px rgba(0,0,0,0.08); border-radius: 3rem; padding: 0.5rem 1.5rem; display: inline-block;">
+            <ul class="nav nav-pills" style="gap: 0.5rem;">
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill" asp-controller="Home" asp-action="CoreFeatures">
+                        Core Features
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill" asp-controller="Home" asp-action="ComparisonMatrix">
+                        Comparison Matrix
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active rounded-pill" aria-current="page" asp-controller="Home" asp-action="LegalAndCompliance">
+                        Legal & Compliance
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill" asp-controller="Home" asp-action="HowItHelps">How It Helps</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill" asp-controller="Home" asp-action="Pricing">
+                        Pricing
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
+
+<div class="container" style="padding-top: 3.0rem; padding-bottom: 2.5rem;">
+    <div class="row">
+        <div class="col-lg-12">
+            <section id="Legal-Compliance" class="mb-5 section-tab">
+                <div class="feature-column">
+                    <p><strong>ISO/SOC Readiness: </strong>PrivacyConfirmed IAM is ISO and SOC compliant, ensuring that your organization meets the highest global standards for security, confidentiality, and privacy. This includes:</p>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <svg class="feature-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                <polyline points="22 4 12 14.01 9 11.01" />
+                            </svg>
+                            <div class="feature-card-text">ISO 27001: Information Security Management System (ISMS) to safeguard your data.</div>
+                        </div>
+
+                        <div class="feature-card">
+                            <svg class="feature-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                <polyline points="22 4 12 14.01 9 11.01" />
+                            </svg>
+                            <div class="feature-card-text">SOC 2: Ensures that PrivacyConfirmed follows rigorous standards for security, availability, confidentiality, processing integrity, and privacy.</div>
+                        </div>
+                    </div>
+                    <p class="mb-xxl-5">These certifications provide a clear framework for managing sensitive information, giving your organization the confidence it needs to maintain compliance with industry regulations.</p>
+                </div>
+            </section>
+            <section id="Data-Residency-Compliance" class="mb-5 section-tab">
+                <div class="card mb-4 fade-in">
+                    <p>PrivacyConfirmed supports <b>India-based data residency</b> to comply with the country’s data protection laws. This feature ensures that your <b>user data</b> is stored and processed within India’s borders, providing full compliance with the <b>Indian Data Protection Bill</b> (currently under review) and other regulatory frameworks that may arise.</p>
+                    <p>Key Benefits:</p>
+                    <ul class="list-group-horizontal">
+                        <li><b>Local compliance:</b> Meeting the Indian data residency requirements for user data.</li>
+                        <li><b>Data sovereignty:</b> Ensures data is stored within the country to meet regulatory needs.</li>
+                    </ul>
+                </div>
+            </section>
+            <section id="Consent-Management" class="mb-5 section-tab">
+                <div class="card mb-4 fade-in">
+                    <p>With <b>PrivacyConfirmed IAM</b>, you can easily manage <b>user consent</b> for data processing and ensure transparency in how their data is used. Our <b>Consent Management</b> features allow you to:</p>
+                    <ul class="list-group-horizontal">
+                        <li>Gather user consent during the authentication process</li>
+                        <li>Provide users with clear options to <b>opt-in</b> or <b>opt-out</b> for specific data usage</li>
+                        <li>Track consent across applications and ensure compliance with regulations like <b>GDPR</b></li>
+                    </ul>
+                </div>
+            </section>
+            <section id="Audit-Trails" class="mb-5 section-tab">
+                <div class="card mb-4 fade-in">
+                    <p>Our <b>Audit Trails</b> feature provides <b>complete transparency</b> over user access and authentication activities. All actions, from user logins to role changes, are tracked and logged in real-time. This makes it easy to:</p>
+                    <ul class="list-group-horizontal">
+                        <li><b>Monitor access:</b> Keep a record of who accessed what and when</li>
+                        <li><b>Generate reports:</b> Use the audit logs for compliance audits and security assessments</li>
+                        <li><b>Identify vulnerabilities:</b> Quickly detect unauthorized access attempts and anomalies</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const pills = document.querySelectorAll('#sectionPills .nav-link');
+            const sections = document.querySelectorAll('.section-tab');
+
+            pills.forEach(pill => {
+                pill.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    // Remove active from all pills
+                    pills.forEach(p => p.classList.remove('active'));
+                    // Hide all sections
+                    sections.forEach(s => s.style.display = 'none');
+                    // Activate clicked pill
+                    this.classList.add('active');
+                    // Show corresponding section
+                    const sectionId = this.getAttribute('data-section');
+                    document.getElementById(sectionId).style.display = '';
+                });
+            });
+        });
+    </script>
+}
