@@ -7,7 +7,8 @@ pipeline {
 
     environment {
         IMAGE_NAME = "privacyconfirmed-app"
-        NEXUS_DEV = "10.20.20.40:5001/docker-dev"
+        NEXUS_HOST = "10.20.20.40:5001"
+        NEXUS_REPO = "docker-dev"
         APP_VM = "10.20.20.20"
         APP_USER = "appadmin"
         CONTAINER_NAME = "privacyconfirmed-app"
@@ -31,7 +32,7 @@ pipeline {
                     passwordVariable: 'NEXUS_PASS'
                 )]) {
                     sh """
-                    echo "$NEXUS_PASS" | docker login 10.20.20.40:5001 -u "$NEXUS_USER" --password-stdin
+                    echo "$NEXUS_PASS" | docker login ${NEXUS_HOST} -u "$NEXUS_USER" --password-stdin
                     """
                 }
             }
@@ -48,45 +49,46 @@ pipeline {
         stage('Tag & Push Image to Nexus') {
             steps {
                 sh """
-                docker tag ${IMAGE_NAME}:${BUILD_NUMBER} ${NEXUS_DEV}/${IMAGE_NAME}:${BUILD_NUMBER}
-                docker push ${NEXUS_DEV}/${IMAGE_NAME}:${BUILD_NUMBER}
+                docker tag ${IMAGE_NAME}:${BUILD_NUMBER} ${NEXUS_HOST}/${NEXUS_REPO}/${IMAGE_NAME}:${BUILD_NUMBER}
+                docker push ${NEXUS_HOST}/${NEXUS_REPO}/${IMAGE_NAME}:${BUILD_NUMBER}
                 """
             }
         }
 
-		stage('Deploy to App VM') {
-			steps {
-				withCredentials([usernamePassword(
-					credentialsId: 'nexus-creds',
-					usernameVariable: 'NEXUS_USER',
-					passwordVariable: 'NEXUS_PASS'
-				)]) {
-					sshagent(['app-vm-ssh']) {
-						sh """
-						ssh -o StrictHostKeyChecking=no ${APP_USER}@${APP_VM} '
-							
-							echo "${NEXUS_PASS}" | docker login 10.20.20.40:5001 -u "${NEXUS_USER}" --password-stdin
+        stage('Deploy to App VM') {
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'nexus-creds',
+                    usernameVariable: 'NEXUS_USER',
+                    passwordVariable: 'NEXUS_PASS'
+                )]) {
+                    sshagent(['app-vm-ssh']) {
+                        sh """
+                        ssh -o StrictHostKeyChecking=no ${APP_USER}@${APP_VM} "
+                            
+                            echo '${NEXUS_PASS}' | docker login ${NEXUS_HOST} -u '${NEXUS_USER}' --password-stdin
 
-							docker pull ${NEXUS_DEV}/${IMAGE_NAME}:${BUILD_NUMBER}
+                            docker pull ${NEXUS_HOST}/${NEXUS_REPO}/${IMAGE_NAME}:${BUILD_NUMBER}
 
-							docker rm -f ${CONTAINER_NAME} || true
+                            docker rm -f ${CONTAINER_NAME} || true
 
-							docker run -d -p 5000:8080 \
-							  --name ${CONTAINER_NAME} \
-							  ${NEXUS_DEV}/${IMAGE_NAME}:${BUILD_NUMBER}
-						'
-						"""
-					}
-				}
-			}
-		}
-		stage('Cleanup Docker') {
-			steps {
-				sh '''
-				docker system prune -f
-				'''
-			}
-		}
+                            docker run -d -p 5000:8080 \\
+                              --name ${CONTAINER_NAME} \\
+                              ${NEXUS_HOST}/${NEXUS_REPO}/${IMAGE_NAME}:${BUILD_NUMBER}
+                        "
+                        """
+                    }
+                }
+            }
+        }
+
+        stage('Cleanup Docker') {
+            steps {
+                sh '''
+                docker image prune -f
+                '''
+            }
+        }
     }
 
     post {
