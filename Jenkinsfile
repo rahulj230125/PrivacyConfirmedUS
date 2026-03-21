@@ -2,12 +2,14 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'BRANCH_NAME', defaultValue: 'master', description: 'Git branch to build')
+        string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Git branch to build')
     }
 
     environment {
+        IMAGE_NAME = "privacyconfirmed-app"
+        NEXUS_DEV = "nexus.pc:5001/docker-dev"
         APP_VM = "10.20.20.20"
-        APP_DIR = "/opt/apps/PrivacyConfirmed"
+        APP_USER = "appadmin"
         CONTAINER_NAME = "privacyconfirmed-app"
     }
 
@@ -16,33 +18,70 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 git branch: "${params.BRANCH_NAME}",
-					url: 'git@github.com:rahulj230125/PrivacyConfirmed.git',
-					credentialsId: 'jenkins-github-privacyconfirmed-repo'
+                    url: 'git@github.com:rahulj230125/PrivacyConfirmed.git',
+                    credentialsId: 'jenkins-github-privacyconfirmed-repo'
             }
         }
 
-		stage('Deploy to App VM') {
-			steps {
-				sshagent(['app-vm-ssh']) {
-					sh """
-					ssh -o StrictHostKeyChecking=no appadmin@10.20.20.20 '
-						
-						cd /opt/apps/PrivacyConfirmed
-						git fetch
-						git checkout ${params.BRANCH_NAME}
-						git reset --hard origin/${params.BRANCH_NAME}
+        stage('Docker Login to Nexus') {
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'nexus-creds',
+                    usernameVariable: 'NEXUS_USER',
+                    passwordVariable: 'NEXUS_PASS'
+                )]) {
+                    sh """
+                    echo "$NEXUS_PASS" | docker login nexus.pc:5001 -u "$NEXUS_USER" --password-stdin
+                    """
+                }
+            }
+        }
 
-						docker rm -f privacyconfirmed-app || true
+        stage('Build Docker Image') {
+            steps {
+                sh """
+                docker build -t ${IMAGE_NAME}:${BUILD_NUMBER} .
+                """
+            }
+        }
 
-						docker build -t privacyconfirmed-app .
+        stage('Tag & Push Image to Nexus') {
+            steps {
+                sh """
+                docker tag ${IMAGE_NAME}:${BUILD_NUMBER} ${NEXUS_DEV}/${IMAGE_NAME}:${BUILD_NUMBER}
+                docker push ${NEXUS_DEV}/${IMAGE_NAME}:${BUILD_NUMBER}
+                """
+            }
+        }
 
-						docker run -d -p 5000:8080 \
-						  --name privacyconfirmed-app \
-						  privacyconfirmed-app
-					'
-					"""
-				}
-			}
-		}
+        stage('Deploy to App VM') {
+            steps {
+                sshagent(['app-vm-ssh']) {
+                    sh """
+                    ssh -o StrictHostKeyChecking=no ${APP_USER}@${APP_VM} '
+                        
+                        docker login nexus.pc:5001 -u ${NEXUS_USER} -p ${NEXUS_PASS}
+
+                        docker pull ${NEXUS_DEV}/${IMAGE_NAME}:${BUILD_NUMBER}
+
+                        docker rm -f ${CONTAINER_NAME} || true
+
+                        docker run -d -p 5000:8080 \
+                          --name ${CONTAINER_NAME} \
+                          ${NEXUS_DEV}/${IMAGE_NAME}:${BUILD_NUMBER}
+                    '
+                    """
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "✅ Deployment successful!"
+        }
+        failure {
+            echo "❌ Pipeline failed!"
+        }
     }
 }
