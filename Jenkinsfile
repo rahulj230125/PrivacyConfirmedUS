@@ -7,7 +7,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "privacyconfirmed-app"
-        NEXUS_DEV = "nexus.pc:5001/docker-dev"
+        NEXUS_DEV = "10.20.20.40:5001/docker-dev"
         APP_VM = "10.20.20.20"
         APP_USER = "appadmin"
         CONTAINER_NAME = "privacyconfirmed-app"
@@ -31,7 +31,7 @@ pipeline {
                     passwordVariable: 'NEXUS_PASS'
                 )]) {
                     sh """
-                    echo "$NEXUS_PASS" | docker login nexus.pc:5001 -u "$NEXUS_USER" --password-stdin
+                    echo "$NEXUS_PASS" | docker login 10.20.20.40:5001 -u "$NEXUS_USER" --password-stdin
                     """
                 }
             }
