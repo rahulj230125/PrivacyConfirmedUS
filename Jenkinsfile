@@ -65,7 +65,7 @@ pipeline {
 						sh """
 						ssh -o StrictHostKeyChecking=no ${APP_USER}@${APP_VM} '
 							
-							echo "${NEXUS_PASS}" | docker login nexus.pc:5001 -u "${NEXUS_USER}" --password-stdin
+							echo "${NEXUS_PASS}" | docker login 10.20.20.40:5001 -u "${NEXUS_USER}" --password-stdin
 
 							docker pull ${NEXUS_DEV}/${IMAGE_NAME}:${BUILD_NUMBER}
 
