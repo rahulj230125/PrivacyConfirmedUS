@@ -29,12 +29,6 @@ try
     // Register HttpClient for API calls
     builder.Services.AddHttpClient();
 
-    // Register Dependency Injection for DAL and BAL
-    builder.Services.AddScoped<IContactUsRepository, ContactUsRepository>();
-    builder.Services.AddScoped<IContactUsService, ContactUsService>();
-    builder.Services.AddScoped<IResourceFileRepository, ResourceFileRepository>();
-    builder.Services.AddScoped<IResourceFileService, ResourceFileService>();
-
     // Build PostgreSQL connection string from environment variables or appsettings.json
     string pgHost = Environment.GetEnvironmentVariable("pc_host");
     string pgDatabase = Environment.GetEnvironmentVariable("pc_database");
@@ -53,6 +47,12 @@ try
     {
         pgConnectionString = builder.Configuration.GetConnectionString("PostgreSQLConnection");
     }
+
+    // Register Dependency Injection for DAL and BAL
+    builder.Services.AddScoped<IContactUsRepository, ContactUsRepository>();
+    builder.Services.AddScoped<IContactUsService, ContactUsService>();
+    builder.Services.AddScoped<IResourceFileRepository>(provider => new ResourceFileRepository(pgConnectionString));
+    builder.Services.AddScoped<IResourceFileService, ResourceFileService>();
 
     // Register Health Checks: use built connection string
     builder.Services.AddHealthChecks()

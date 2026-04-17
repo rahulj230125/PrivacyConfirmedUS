@@ -1,4 +1,3 @@
-using Microsoft.Extensions.Configuration;
 using PrivacyConfirmedModel;
 using PrivacyConfirmedDAL.Interfaces;
 using System.Data;
@@ -16,28 +15,16 @@ namespace PrivacyConfirmedDAL.Repositories
     {
         #region Private Fields
         private readonly string _connectionString;
-        private readonly string _databaseProvider;
         #endregion
 
         #region Constructor
         /// <summary>
         /// Initializes a new instance of the ResourceFileRepository
         /// </summary>
-        /// <param name="configuration">Configuration service for accessing app settings</param>
-        public ResourceFileRepository(IConfiguration configuration)
+        /// <param name="connectionString">PostgreSQL connection string</param>
+        public ResourceFileRepository(string connectionString)
         {
-            _databaseProvider = configuration["DatabaseProvider"] ?? "SqlServer";
-
-            if (_databaseProvider.Equals("PostgreSQL", StringComparison.OrdinalIgnoreCase))
-            {
-                _connectionString = configuration.GetConnectionString("PostgreSQLConnection")
-                    ?? throw new ArgumentNullException(nameof(configuration), "PostgreSQLConnection is missing in configuration.");
-            }
-            else
-            {
-                _connectionString = configuration.GetConnectionString("DefaultConnection")
-                    ?? throw new ArgumentNullException(nameof(configuration), "DefaultConnection is missing in configuration.");
-            }
+            _connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
         }
         #endregion
 
