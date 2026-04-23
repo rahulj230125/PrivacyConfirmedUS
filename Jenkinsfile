@@ -6,12 +6,12 @@ pipeline {
     }
 
     environment {
-        IMAGE_NAME = "privacyconfirmed-app"
+        IMAGE_NAME = "privacyconfirmed-us-app"
         NEXUS_HOST = "10.20.20.40:5001"
         NEXUS_REPO = "docker-dev"
         APP_VM = "10.20.20.20"
         APP_USER = "appadmin"
-        CONTAINER_NAME = "privacyconfirmed-app"
+        CONTAINER_NAME = "privacyconfirmed-us-app"
     }
 
     stages {
@@ -19,7 +19,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 git branch: "${params.BRANCH_NAME}",
-                    url: 'git@github.com:rahulj230125/PrivacyConfirmed.git',
+                    url: 'git@github.com:rahulj230125/PrivacyConfirmedUS.git',
                     credentialsId: 'jenkins-github-privacyconfirmed-repo'
             }
         }
@@ -72,7 +72,7 @@ pipeline {
 
                             docker rm -f ${CONTAINER_NAME} || true
 
-                            docker run -d -p 5000:8080 \\
+                            docker run -d -p 6000:8080 \\
                               --name ${CONTAINER_NAME} \\
                               ${NEXUS_HOST}/${NEXUS_REPO}/${IMAGE_NAME}:${BUILD_NUMBER}
                         "
