@@ -94,6 +94,7 @@ pipeline {
 						pc_database=\$(vault kv get -field=pc_database kv/privacyconfirmed/db/postgres)
 						pc_username=\$(vault kv get -field=pc_username kv/privacyconfirmed/db/postgres)
 						pc_password=\$(vault kv get -field=pc_password kv/privacyconfirmed/db/postgres)
+
                         echo "DEBUG pc_host=\$pc_host"
                         echo "DEBUG pc_database=\$pc_database"
 
@@ -106,10 +107,10 @@ pipeline {
 
                         docker run -d -p ${params.APP_PORT}:8080 \
                             --name ${CONTAINER_NAME} \
-                            -e pc_host="\$pc_host" \
-                            -e pc_database="\$pc_database" \
-                            -e pc_username="\$pc_username" \
-                            -e pc_password="\$pc_password" \
+                            -e pc_host="10.20.20.10:5432" \
+                            -e pc_database="privacy_confirmed_db" \
+                            -e pc_username="webuser" \
+                            -e pc_password="Pr!v@cyC0nf!rm3dW3bUs3r" \
                             ${NEXUS_HOST}/${NEXUS_REPO}/${IMAGE_NAME}:${BUILD_NUMBER}
 
                         echo "DEBUG inside container:"
