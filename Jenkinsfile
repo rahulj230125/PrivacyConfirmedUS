@@ -9,7 +9,7 @@ pipeline {
         IMAGE_NAME = "privacyconfirmed-us-app"
         NEXUS_HOST = "10.20.20.40:5001"
         NEXUS_REPO = "docker-dev"
-        APP_VM = "10.20.20.20"
+        APP_VM = "10.10.10.30"
         APP_USER = "appadmin"
         CONTAINER_NAME = "privacyconfirmed-us-app"
     }
