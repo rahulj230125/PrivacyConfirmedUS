@@ -17,7 +17,7 @@ pipeline {
         CONTAINER_NAME = "privacyconfirmed-us-app"
 
         VAULT_ADDR = "http://vault.pc:8200"
-        VAULT_DB_PATH = "kv/privacyconfirmed/db/postgres"
+        VAULT_DB_PATH = "privacyconfirmed/db/postgres"
     }
 
     stages {
@@ -90,10 +90,10 @@ pipeline {
                         export VAULT_TOKEN=\$VAULT_TOKEN
 
                         # Fetch DB config from Vault
-                        pc_host=\$(vault kv get -field=host ${VAULT_DB_PATH})
-                        pc_database=\$(vault kv get -field=database ${VAULT_DB_PATH})
-                        pc_username=\$(vault kv get -field=iam_username ${VAULT_DB_PATH})
-                        pc_password=\$(vault kv get -field=iam_password ${VAULT_DB_PATH})
+                        pc_host=\$(vault kv get -mount=kv -field=pc_host ${VAULT_DB_PATH})
+                        pc_database=\$(vault kv get -mount=kv -field=pc_database ${VAULT_DB_PATH})
+                        pc_username=\$(vault kv get -mount=kv -field=pc_username ${VAULT_DB_PATH})
+                        pc_password=\$(vault kv get -mount=kv -field=pc_password ${VAULT_DB_PATH})
 
                         echo "DEBUG pc_host=\$pc_host"
                         echo "DEBUG pc_database=\$pc_database"
