@@ -90,11 +90,10 @@ pipeline {
                         export VAULT_TOKEN=\$VAULT_TOKEN
 
                         # Fetch DB config from Vault
-                        pc_host=\$(vault kv get -mount=kv -field=pc_host ${VAULT_DB_PATH})
-                        pc_database=\$(vault kv get -mount=kv -field=pc_database ${VAULT_DB_PATH})
-                        pc_username=\$(vault kv get -mount=kv -field=pc_username ${VAULT_DB_PATH})
-                        pc_password=\$(vault kv get -mount=kv -field=pc_password ${VAULT_DB_PATH})
-
+						pc_host=\$(vault kv get -field=pc_host kv/privacyconfirmed/db/postgres)
+						pc_database=\$(vault kv get -field=pc_database kv/privacyconfirmed/db/postgres)
+						pc_username=\$(vault kv get -field=pc_username kv/privacyconfirmed/db/postgres)
+						pc_password=\$(vault kv get -field=pc_password kv/privacyconfirmed/db/postgres)
                         echo "DEBUG pc_host=\$pc_host"
                         echo "DEBUG pc_database=\$pc_database"
 
