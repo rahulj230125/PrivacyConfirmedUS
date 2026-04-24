@@ -1,16 +1,14 @@
 pipeline {
     agent any
 
-    parameters {
-        string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Git branch to build')
-    }
-
     environment {
-        IMAGE_NAME = "privacyconfirmed-us-app"
-        NEXUS_HOST = "10.20.20.40:5001"
-        NEXUS_REPO = "docker-dev"
         APP_VM = "10.10.10.30"
         APP_USER = "appadmin"
+
+        NEXUS_HOST = "10.20.20.40:5001"
+        NEXUS_REPO = "docker-dev"
+        IMAGE_NAME = "privacyconfirmed-us-app"
+
         CONTAINER_NAME = "privacyconfirmed-us-app"
     }
 
@@ -18,9 +16,9 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                git branch: "${params.BRANCH_NAME}",
-                    url: 'git@github.com:rahulj230125/PrivacyConfirmedUS.git',
-                    credentialsId: 'jenkins-github-privacyconfirmed-repo'
+                git branch: 'master',
+                    credentialsId: 'github-ssh',
+                    url: 'git@github.com:rahulj230125/PrivacyConfirmedUS.git'
             }
         }
 
@@ -31,8 +29,9 @@ pipeline {
                     usernameVariable: 'NEXUS_USER',
                     passwordVariable: 'NEXUS_PASS'
                 )]) {
+
                     sh '''
-                    echo "$NEXUS_PASS" | docker login ${NEXUS_HOST} -u "$NEXUS_USER" --password-stdin
+                    echo "$NEXUS_PASS" | docker login 10.20.20.40:5001 -u "$NEXUS_USER" --password-stdin
                     '''
                 }
             }
@@ -46,7 +45,7 @@ pipeline {
             }
         }
 
-        stage('Tag & Push Image to Nexus') {
+        stage('Tag & Push Image') {
             steps {
                 sh '''
                 docker tag ${IMAGE_NAME}:${BUILD_NUMBER} ${NEXUS_HOST}/${NEXUS_REPO}/${IMAGE_NAME}:${BUILD_NUMBER}
@@ -57,57 +56,59 @@ pipeline {
 
         stage('Deploy to App VM') {
             steps {
+
                 withCredentials([
                     usernamePassword(
                         credentialsId: 'nexus-creds',
                         usernameVariable: 'NEXUS_USER',
                         passwordVariable: 'NEXUS_PASS'
-                    ),
-                    string(credentialsId: 'vault-role-id', variable: 'ROLE_ID'),
-                    string(credentialsId: 'vault-secret-id', variable: 'SECRET_ID')
+                    )
                 ]) {
 
-                    sshagent(['app-vm-ssh']) {
+                    sh """
+                    ssh -o StrictHostKeyChecking=no ${APP_USER}@${APP_VM} '
 
-                        sh '''
-                        ssh -o StrictHostKeyChecking=no ${APP_USER}@${APP_VM} "
+                        set -e
 
-                            export VAULT_ADDR=http://vault.pc:8200
+                        export VAULT_ADDR=http://vault.pc:8200
 
-                            VAULT_TOKEN=\$(vault write -field=token auth/approle/login \
-                                role_id=${ROLE_ID} \
-                                secret_id=${SECRET_ID})
+                        VAULT_TOKEN=\$(vault write -field=token auth/approle/login \
+                            role_id=${ROLE_ID} \
+                            secret_id=${SECRET_ID})
 
-                            export VAULT_TOKEN=\$VAULT_TOKEN
+                        export VAULT_TOKEN=\$VAULT_TOKEN
 
-                            # 🔥 FETCH VALUES FROM VAULT
-                            pc_host=\$(vault kv get -field=pc_host kv/privacyconfirmed/db/postgres)
-                            pc_database=\$(vault kv get -field=pc_database kv/privacyconfirmed/db/postgres)
-                            pc_username=\$(vault kv get -field=pc_username kv/privacyconfirmed/db/postgres)
-                            pc_password=\$(vault kv get -field=pc_password kv/privacyconfirmed/db/postgres)
+                        # Fetch DB values
+                        pc_host=\$(vault kv get -field=host kv/privacyconfirmed/db/postgres)
+                        pc_database=\$(vault kv get -field=database kv/privacyconfirmed/db/postgres)
+                        pc_username=\$(vault kv get -field=iam_username kv/privacyconfirmed/db/postgres)
+                        pc_password=\$(vault kv get -field=iam_password kv/privacyconfirmed/db/postgres)
 
-                            # 🔥 EXPORT FOR DOCKER
-                            export pc_host=\$pc_host
-                            export pc_database=\$pc_database
-                            export pc_username=\$pc_username
-                            export pc_password=\$pc_password
+                        echo "DEBUG: pc_host=\$pc_host"
+                        echo "DEBUG: pc_database=\$pc_database"
 
-                            echo \"$NEXUS_PASS\" | docker login ${NEXUS_HOST} -u \"$NEXUS_USER\" --password-stdin
+                        # Login to Nexus (safe handling)
+                        echo "${NEXUS_PASS}" | docker login ${NEXUS_HOST} -u "${NEXUS_USER}" --password-stdin
 
-                            docker pull ${NEXUS_HOST}/${NEXUS_REPO}/${IMAGE_NAME}:${BUILD_NUMBER}
+                        docker pull ${NEXUS_HOST}/${NEXUS_REPO}/${IMAGE_NAME}:${BUILD_NUMBER}
 
-                            docker rm -f ${CONTAINER_NAME} || true
+                        docker rm -f ${CONTAINER_NAME} || true
 
-                            docker run -d -p 6000:8080 \\
-                              --name ${CONTAINER_NAME} \\
-                              -e pc_host=\$pc_host \\
-                              -e pc_database=\$pc_database \\
-                              -e pc_username=\$pc_username \\
-                              -e pc_password=\$pc_password \\
-                              ${NEXUS_HOST}/${NEXUS_REPO}/${IMAGE_NAME}:${BUILD_NUMBER}
-                        "
-                        '''
-                    }
+                        docker run -d -p 6000:8080 \
+                          --name ${CONTAINER_NAME} \
+                          -e pc_host="\$pc_host" \
+                          -e pc_database="\$pc_database" \
+                          -e pc_username="\$pc_username" \
+                          -e pc_password="\$pc_password" \
+                          ${NEXUS_HOST}/${NEXUS_REPO}/${IMAGE_NAME}:${BUILD_NUMBER}
+
+                        echo "DEBUG: Inside container"
+                        docker exec ${CONTAINER_NAME} env | grep pc_ || true
+
+                        unset VAULT_TOKEN
+
+                    '
+                    """
                 }
             }
         }
@@ -115,7 +116,7 @@ pipeline {
         stage('Cleanup Docker') {
             steps {
                 sh '''
-                docker image prune -f
+                docker system prune -f || true
                 '''
             }
         }
@@ -123,7 +124,7 @@ pipeline {
 
     post {
         success {
-            echo "✅ Deployment successful!"
+            echo "✅ Pipeline completed successfully!"
         }
         failure {
             echo "❌ Pipeline failed!"
